@@ -1,0 +1,121 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mazotbackground"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="205dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/mazoticon"
+        android:layout_height="75dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingRight="80dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etNameAndSurname"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:padding="5dp"
+            android:background="@drawable/edit_text_oval_top"
+            android:hint="@string/nameAndSurname"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:background="@drawable/edit_text_oval_middle"
+            android:layout_height="45dp"
+            android:padding="5dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/edit_text_oval_middle"
+            android:padding="5dp"
+            android:focusableInTouchMode="true"
+            android:hint="@string/password"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etAgainPassword"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:focusableInTouchMode="true"
+            android:padding="5dp"
+            android:background="@drawable/edit_text_oval_middle"
+            android:hint="@string/againPassword"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etMobileNumber"
+            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:layout_height="45dp"
+            android:background="@drawable/edit_text_oval_bottom"
+            android:focusableInTouchMode="true"
+            android:hint="@string/mobilNumber"
+            android:imeOptions="actionUnspecified"
+            android:inputType="numberPassword"
+            android:singleLine="true" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="25dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_oval"
+            android:text="@string/registerB"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tLogin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/loginT"
+        android:textStyle="bold|italic"/>
+
+
+</LinearLayout>
+
+

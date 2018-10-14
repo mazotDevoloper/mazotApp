@@ -1,0 +1,30 @@
+package com.mazotapp.mazotapp;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+
+public class VerifyPhoneNumberActivity extends AppCompatActivity {
+
+    private String phoneNumber;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_verify_phone_number);
+        Bundle userInformation = getIntent().getExtras();
+        phoneNumber = userInformation.getString("userPhoneNumber");
+
+
+
+        Toast.makeText(VerifyPhoneNumberActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
+    }
+}

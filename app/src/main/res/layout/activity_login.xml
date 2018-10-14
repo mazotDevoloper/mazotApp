@@ -1,0 +1,77 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mazotbackground"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="205dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/mazoticon"
+        android:layout_height="75dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingRight="80dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:padding="5dp"
+            android:background="@drawable/edit_text_oval_top"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:focusableInTouchMode="true"
+            android:hint="@string/password"
+            android:padding="5dp"
+            android:background="@drawable/edit_text_oval_bottom"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingHorizontal="25dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_oval"
+            android:text="@string/loginB"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/registerT"
+        android:gravity="center"
+        android:textStyle="bold|italic" />
+
+
+</LinearLayout>
+
+
+

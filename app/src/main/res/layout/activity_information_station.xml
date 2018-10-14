@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@drawable/top_color"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:src="@drawable/mazot_logo_top"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/stationInfoPanel"
+        android:layout_below="@+id/topPanel"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgStation"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+        <TextView
+            android:layout_width="350dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/stationName"
+            android:layout_marginTop="20dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_width="350dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/stationInfoFeatures"
+            android:textSize="25sp"
+            android:paddingLeft="20dp"
+            android:textStyle="bold"
+            android:layout_height="40dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:src="@drawable/distance_icon"
+                android:layout_height="30dp" />
+            <ImageView
+                android:layout_width="30dp"
+                android:src="@drawable/wc_icon"
+                android:layout_marginLeft="10dp"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="370dp"
+            android:text=""
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:id="@+id/stationInfo"
+            android:layout_marginTop="30dp"
+            android:layout_height="100dp" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="25dp"
+        android:layout_below="@id/stationInfoPanel"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnOpenGoogleMap"
+            android:layout_width="match_parent"
+            android:background="@drawable/oval"
+            android:text="@string/openGoogleMap"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_height="45dp" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

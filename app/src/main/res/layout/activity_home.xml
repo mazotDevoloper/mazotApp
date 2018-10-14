@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/top_color"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="55dp">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:src="@drawable/mazot_logo_top"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.BottomNavigationView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main_nav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:itemIconTint="@color/nav_item_colors"
+        app:itemTextColor="@color/nav_item_colors"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="start"
+        android:background="@drawable/bottom_color"
+        app:menu="@menu/my_navigation_items" />
+
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/main_nav"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true">
+
+    </FrameLayout>
+
+
+</RelativeLayout>
+
+
+

@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mazotbackground"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="205dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/mazoticon"
+        android:layout_height="75dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/etVerifyPhoneNumber"
+        android:hint="@string/verifyPhoneNumberEd"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dip"
+        android:background="@color/buttonColor"
+        android:text="@string/continueB"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>

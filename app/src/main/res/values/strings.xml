@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">MazotApp</string>
+    <string name="email">E-posta</string>
+    <string name="password">Parola</string>
+    <string name="mobilNumber">Telefon Numarası (512 345 678)</string>
+    <string name="againPassword">Parola Tekrarı</string>
+    <string name="loginB">Giriş Yap</string>
+    <string name="registerB">Kayıt Ol</string>
+    <string name="nameAndSurname">Ad Soyad</string>
+    <string name="verifyPhoneNumberEd">Doğrulama kodu</string>
+    <string name="loginT"><u>Giriş yapmak için tıklayınız.</u></string>
+    <string name="registerT"><u>Kayıt olmak için tıklayınız.</u>.</string>
+    <string name="continueB">Devam et</string>
+    <string name="exitB">Çıkış yap</string>
+    <string name="findStationB">İstasyonu bul</string>
+    <string name="findStationT">Size En Uygun İstasyonu Bulun</string>
+    <string name="carFuelT">Aracınızın Akaryakıt Türü</string>
+    <string name="fuelGasolineRB">Benzin</string>
+    <string name="fuelDieselRB">Dizel</string>
+    <string name="fuelLPGrb">LPG</string>
+    <string name="searchingServicePointT">Aradığınız Puanı Seçiniz</string>
+    <string name="stationCriteria">İstasyon Kriterleri</string>
+    <string name="lowPriceCB">En Ucuz</string>
+    <string name="distanceCB">En Yakın</string>
+    <string name="toiletCB">En İyi WC</string>
+    <string name="starbucksCB">Starbucks</string>
+    <string name="stationBrandCB">İstasyon Markası</string>
+    <string name="socialFacilityCB">Sosyal Tesisleri</string>
+    <string name="goFindStationB">İstasyon Bul</string>
+    <string name="nav_campaign">Kampanya</string>
+    <string name="nav_home">Ev</string>
+    <string name="nav_settings">Ayarlar</string>
+    <string name="openGoogleMap">Haritada Göster</string>
+    <string name="stationInfoFeatures">Özellikler:</string>
+
+    <string-array name="brands">
+
+        <item>Opet</item>
+        <item>Shell</item>
+        <item>Petrol Ofisi</item>
+        <item>Aytemiz</item>
+        <item>Energy</item>
+        <item>Bp</item>
+        <item>Total</item>
+
+    </string-array>
+
+    <string-array name="facilities">
+
+        <item>Hava ve su</item>
+        <item>Market</item>
+        <item>Restaurant</item>
+        <item>ATM</item>
+
+    </string-array>
+
+
+</resources>

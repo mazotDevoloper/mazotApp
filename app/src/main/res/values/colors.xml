@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#303F9F</color>
+    <color name="colorPrimaryDark">#404040</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="buttonColor">#00D9AB</color>
+    <color name="findStationT">#E64623</color>
+    <color name="colorWhiteTransparent">#80ffffff</color>
+
+
+
+</resources>
