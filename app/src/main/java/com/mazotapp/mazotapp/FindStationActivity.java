@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 public class FindStationActivity extends AppCompatActivity {
 
      Button btnFindStation;
+     ImageView backIcon;
      CheckBox cbLowPrice,cbDistance,cbBestToilet;
      RadioGroup rgCarFuel;
      Spinner spStationBrands,spStationFacilities;
@@ -38,6 +40,8 @@ public class FindStationActivity extends AppCompatActivity {
 
 
         btnFindStation = findViewById(R.id.btnFindStation);
+
+        backIcon = findViewById(R.id.imgBack_icon);
 
         cbBestToilet = findViewById(R.id.cbBestToilet);
         cbDistance = findViewById(R.id.cbDistance);
@@ -119,6 +123,14 @@ public class FindStationActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 boolSpNothingFacilities = true;
+            }
+        });
+
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intenthome = new Intent(FindStationActivity.this,HomeActivity.class);
+                startActivity(intenthome);
             }
         });
 

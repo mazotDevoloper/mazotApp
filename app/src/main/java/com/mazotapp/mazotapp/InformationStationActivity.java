@@ -15,6 +15,7 @@ public class InformationStationActivity extends AppCompatActivity {
     String stationName,stationInfo;
     ImageView imgStation;
     Button btnOpenGoogleMap;
+    ImageView backIcon;
     int stPhoto;
     double stPositionX,stPositionY;
 
@@ -46,6 +47,15 @@ public class InformationStationActivity extends AppCompatActivity {
         tvStationInfo.setText(stationInfo);
         tvStationName.setText(stationName);
 
+        backIcon = findViewById(R.id.imgBack_icon);
+
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentInfoSt = new Intent(InformationStationActivity.this,StationListActivity.class);
+                startActivity(intentInfoSt);
+            }
+        });
 
         btnOpenGoogleMap.setOnClickListener(new View.OnClickListener() {
             @Override

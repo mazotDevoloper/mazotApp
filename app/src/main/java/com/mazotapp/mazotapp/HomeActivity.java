@@ -19,9 +19,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
 
-
-    ProgressDialog PD;
-
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
@@ -41,10 +38,6 @@ public class HomeActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
-        PD = new ProgressDialog(this);
-        PD.setMessage("Yükleniyor...");
-        PD.setCancelable(true);
-        PD.setCanceledOnTouchOutside(false);
 
         mMainNav = findViewById(R.id.main_nav);
         mMainFrame = findViewById(R.id.main_frame);

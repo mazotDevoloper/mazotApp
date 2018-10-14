@@ -6,20 +6,74 @@
     tools:context=".HomeFragment">
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/home_security_icon"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_marginTop="60dp"
+            android:layout_height="90dp"
+            android:text="@string/homeFragmentT"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="140dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:textSize="15sp"
+            android:text="@string/nearStation"
+            android:layout_height="30dp" />
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_viewCriteria"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:src="@drawable/opet_logo"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="120dp"
+                android:text="@string/opetGurcanN"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="130dp"
+                android:layout_height="30dp" />
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:padding="16dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="580dp"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="MazotApp'e hoşgeldin"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:padding="10dp"/>
 
         <Button
             android:id="@+id/btnGoFindStation"

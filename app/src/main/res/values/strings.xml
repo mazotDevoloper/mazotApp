@@ -22,7 +22,7 @@
     <string name="stationCriteria">İstasyon Kriterleri</string>
     <string name="lowPriceCB">En Ucuz</string>
     <string name="distanceCB">En Yakın</string>
-    <string name="toiletCB">En İyi WC</string>
+    <string name="toiletCB">En Temiz WC</string>
     <string name="starbucksCB">Starbucks</string>
     <string name="stationBrandCB">İstasyon Markası</string>
     <string name="socialFacilityCB">Sosyal Tesisleri</string>
@@ -32,9 +32,18 @@
     <string name="nav_settings">Ayarlar</string>
     <string name="openGoogleMap">Haritada Göster</string>
     <string name="stationInfoFeatures">Özellikler:</string>
+    <string name="facilityCriteria">Tesis Kriterleri</string>
+    <string name="homeFragmentT">Sizi sevenler var lütfen emniyet kemerinizi bağlayın </string>
+    <string name="nearStation">En yakın istasyon </string>
+    <string name="opetGurcanN">Opet Gürcan Petrol </string>
+
+
+
+
 
     <string-array name="brands">
 
+        <item>Markalar</item>
         <item>Opet</item>
         <item>Shell</item>
         <item>Petrol Ofisi</item>
@@ -47,6 +56,7 @@
 
     <string-array name="facilities">
 
+        <item>Sosyal Tesisler</item>
         <item>Hava ve su</item>
         <item>Market</item>
         <item>Restaurant</item>

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 public class StationListActivity extends AppCompatActivity {
 
 
-
+    ImageView backIcon;
     private ListView lvStations;
     Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet,boolSocialFacility,boolStationBrands,boolStarbucks;
     private List<StationModel> addStation = new ArrayList<StationModel>();
@@ -24,7 +25,7 @@ public class StationListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_list);
 
-
+        backIcon = findViewById(R.id.imgBack_icon);
 
         Bundle userChoice = getIntent().getExtras();
 
@@ -92,8 +93,13 @@ public class StationListActivity extends AppCompatActivity {
             }
         });
 
-
-
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentFindStation = new Intent(StationListActivity.this,FindStationActivity.class);
+                startActivity(intentFindStation);
+            }
+        });
     }
 }
 
