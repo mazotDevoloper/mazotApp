@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HomeFragment">
 
     <LinearLayout
@@ -17,9 +18,9 @@
             android:layout_height="100dp" />
 
         <TextView
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_marginTop="60dp"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:text="@string/homeFragmentT"
             android:textStyle="bold"
             android:gravity="center"
@@ -28,49 +29,342 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="140dp">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="match_parent"
             android:textSize="15sp"
             android:text="@string/nearStation"
             android:layout_height="30dp" />
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_viewCriteria"
+            android:id="@+id/card_nearStation"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginStart="10dp">
 
-            <ImageView
-                android:layout_width="80dp"
-                android:src="@drawable/opet_logo"
-                android:layout_height="match_parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="120dp"
-                android:text="@string/opetGurcanN"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="130dp"
-                android:layout_height="30dp" />
+                <ImageView
+                    android:layout_width="80dp"
+                    android:src="@drawable/opet_logo"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="50dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="180dp"
+                        android:text="Opet Gürcan Petrol"
+                        android:layout_height="30dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:src="@drawable/distance_icon"
+                            android:layout_height="30dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/wc_icon"
+                            android:layout_height="30dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/low_price_icon"
+                            android:layout_height="30dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:text="0.9km"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:text="6.83 TL/L"
+                        android:layout_height="20dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
 
         </android.support.v7.widget.CardView>
-
-
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="310dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="300dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="15sp"
+            android:text="@string/mostUseStations"
+            android:layout_height="30dp" />
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/card_mostUseStations1"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/shell_logo"
+                    android:layout_height="60dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="50dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:text="Shell Şişli Petrol"
+                        android:layout_height="30dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:src="@drawable/distance_icon"
+                            android:layout_height="30dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/wc_icon"
+                            android:layout_height="30dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/low_price_icon"
+                            android:layout_height="30dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:text="1.9km"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:text="6.83 TL/L"
+                        android:layout_height="20dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/card_mostUseStations2"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/petrol_ofisi_logo"
+                    android:layout_height="60dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="50dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="180dp"
+                        android:text="Petrol Ofisi Orsay Petrol"
+                        android:layout_height="30dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:src="@drawable/distance_icon"
+                            android:layout_height="30dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/wc_icon"
+                            android:layout_height="30dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/low_price_icon"
+                            android:layout_height="30dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:text="2.3km"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:text="6.83 TL/L"
+                        android:layout_height="20dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/card_mostUseStations3"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/aytemiz_logo"
+                    android:layout_height="80dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="180dp"
+                        android:text="Aytemiz Şişli Petrol"
+                        android:layout_height="30dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:src="@drawable/distance_icon"
+                            android:layout_height="30dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/wc_icon"
+                            android:layout_height="30dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/low_price_icon"
+                            android:layout_height="30dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:text="4.5km"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:text="6.83 TL/L"
+                        android:layout_height="20dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:padding="16dp"
-        android:layout_marginTop="580dp"
+        android:layout_marginTop="600dp"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
@@ -79,7 +373,6 @@
             android:id="@+id/btnGoFindStation"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginTop="20dip"
             android:background="@drawable/oval"
             android:text="@string/goFindStationB"
             android:textColor="@color/white" />

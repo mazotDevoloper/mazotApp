@@ -181,14 +181,14 @@
                     android:layout_height="30dp" />
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
                     android:text="@string/distanceCB"
                     android:layout_marginLeft="15dp"
                     android:textSize="20sp"
                     android:layout_height="30dp" />
 
                 <TextView
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:text="@string/toiletCB"
                     android:layout_marginLeft="5dp"
                     android:textSize="20sp"
