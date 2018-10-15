@@ -149,12 +149,13 @@ public class FindStationActivity extends AppCompatActivity {
 
                          //Akaryakıt türlerinin kontrolü
 
-                        if(rb.getText() == "LPG"){
-                            boolLPG = true;
-                        }else if(rb.getText() ==  "Benzin"){
-                            boolGasoline = true;
-                        }else{
+                        if(rb.getText().equals("Dizel")){
                             boolDiesel = true;
+                        }else{
+                            boolDiesel = false;
+                        }
+                        if(rb.getText().equals("LPG")){
+                            boolLPG = true;
                         }
 
                         //İstasyon kriterlerinin kontrolü
