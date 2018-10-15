@@ -16,11 +16,10 @@ import android.widget.Toast;
 
 public class FindStationActivity extends AppCompatActivity {
 
-     Button btnFindStation;
+     Button btnFindStation,btnSocialFacility,btnBrands;
      ImageView backIcon;
      CheckBox cbLowPrice,cbDistance,cbBestToilet;
      RadioGroup rgCarFuel;
-     Spinner spStationBrands,spStationFacilities;
      RadioButton rbGasoline,rbDiesel,rbLPG,rb;
      Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet,boolAirWater,boolMarket,boolRestaurant,boolATM,boolOpet,boolShell,
              boolTotal,boolBp,boolPetrolOffice,boolAytemiz,boolEnergy,boolSpNothingBrands,boolSpNothingFacilities;
@@ -39,6 +38,10 @@ public class FindStationActivity extends AppCompatActivity {
         boolToilet =  false;
 
 
+
+
+        btnBrands = findViewById(R.id.btnBrands);
+        btnSocialFacility = findViewById(R.id.btnSocialFacility);
         btnFindStation = findViewById(R.id.btnFindStation);
 
         backIcon = findViewById(R.id.imgBack_icon);
@@ -49,88 +52,27 @@ public class FindStationActivity extends AppCompatActivity {
 
         rgCarFuel = findViewById(R.id.rgCarFuel);
 
-        spStationBrands = findViewById(R.id.spStationBrands);
-        spStationFacilities = findViewById(R.id.spStationFacility);
-
-        //spinner yani seçilebilir liste için adaptör tanımlıyorum ve onu kullanıyorum
-
-        ArrayAdapter stBrandsAdapter = ArrayAdapter.createFromResource(this,R.array.brands,android.R.layout.simple_spinner_item);
-        stBrandsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spStationBrands.setAdapter(stBrandsAdapter);
-
-        ArrayAdapter stFacilitiesAdapter = ArrayAdapter.createFromResource(this,R.array.facilities,android.R.layout.simple_spinner_item);
-        stFacilitiesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spStationFacilities.setAdapter(stFacilitiesAdapter);
-
-
-        //seçilebilir listeden hangisini seçtiyse ona göre listeleme yapıyorum
-
-        spStationBrands.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String[] brandsArray = getResources().getStringArray(R.array.brands);
-
-                if(brandsArray[position].equals("Opet")){
-                    boolOpet = true;
-                }
-                if(brandsArray[position].equals("Shell")){
-                    boolShell = true;
-                }
-                if(brandsArray[position].equals("Petrol Ofisi")){
-                    boolPetrolOffice = true;
-                }
-                if(brandsArray[position].equals("Bp")){
-                    boolBp = true;
-                }
-                if(brandsArray[position].equals("Total")){
-                    boolTotal = true;
-                }
-                if(brandsArray[position].equals("Energy")){
-                    boolEnergy = true;
-                }
-                if(brandsArray[position].equals("Aytemiz")){
-                    boolAytemiz = true;
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                boolSpNothingBrands = true;
-            }
-        });
-
-        spStationFacilities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String[] facilitiesArray = getResources().getStringArray(R.array.facilities);
-
-                if(facilitiesArray[position].equals("Market")){
-                    boolMarket = true;
-                }
-                if(facilitiesArray[position].equals("ATM")){
-                    boolATM = true;
-                }
-                if(facilitiesArray[position].equals("Hava ve su")){
-                    boolAirWater = true;
-                }
-                if(facilitiesArray[position].equals("Restaurant")){
-                    boolRestaurant = true;
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                boolSpNothingFacilities = true;
-            }
-        });
-
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intenthome = new Intent(FindStationActivity.this,HomeActivity.class);
                 startActivity(intenthome);
+            }
+        });
+
+        btnSocialFacility.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentChooseFacility = new Intent(FindStationActivity.this,ChooseSocialFacility.class);
+                startActivity(intentChooseFacility);
+            }
+        });
+
+        btnBrands.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentChooseBrands = new Intent(FindStationActivity.this,ChooseBrands.class);
+                startActivity(intentChooseBrands);
             }
         });
 

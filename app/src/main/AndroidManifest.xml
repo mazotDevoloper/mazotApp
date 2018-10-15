@@ -3,7 +3,7 @@
     package="com.mazotapp.mazotapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -24,22 +24,21 @@
         <activity android:name=".VerifyPhoneNumberActivity" />
         <activity android:name=".FindStationActivity" />
         <activity android:name=".StationListActivity" />
-        <activity android:name=".InformationStationActivity"/>
+        <activity android:name=".InformationStationActivity" />
 
-        <service
-            android:name=".FirebaseInstanceIdService">
+        <service android:name=".FirebaseInstanceIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".FireBaseMessagingServices">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service
-            android:name=".FireBaseMessagingServices">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
+        <activity android:name=".ChooseSocialFacility" />
+        <activity android:name=".ChooseBrands"></activity>
     </application>
 
 </manifest>

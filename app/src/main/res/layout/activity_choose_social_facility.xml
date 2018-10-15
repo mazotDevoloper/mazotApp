@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChooseSocialFacility">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:text="@string/Market"
+            android:id="@+id/cbMarket"
+            android:layout_marginTop="10dp"
+            android:layout_height="30dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/cbRestaurant"
+            android:text="@string/Restaurant"
+            android:layout_height="30dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/ATM"
+            android:id="@+id/cbATM"
+            android:layout_height="30dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/cbAirWater"
+            android:text="@string/Air_water"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/btnConfirm"
+        android:text="@string/ConfirmB"
+        android:background="@drawable/button_oval"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_height="40dp" />
+
+</RelativeLayout>

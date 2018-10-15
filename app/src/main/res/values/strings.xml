@@ -36,31 +36,21 @@
     <string name="homeFragmentT">Sizi sevenler var lütfen emniyet kemerinizi bağlayın </string>
     <string name="nearStation">En Yakın Istasyon </string>
     <string name="mostUseStations">En Sık Kullanılanlar </string>
+    <string name="socialFacilityB">Sosyal Tesisler </string>
+    <string name="brandsB">Markalar </string>
+    <string name="Opet">Opet </string>
+    <string name="Aytemiz">Aytemiz </string>
+    <string name="Shell">Shell </string>
+    <string name="Total">Total </string>
+    <string name="Petrol_Ofisi">Petrol Ofisi </string>
+    <string name="Air_water">Hava\su </string>
+    <string name="Market">Market </string>
+    <string name="Restaurant">Restaurant </string>
+    <string name="ATM">ATM </string>
+    <string name="Bp">Bp </string>
+    <string name="Energy">Energy </string>
+    <string name="ConfirmB">Onayla </string>
 
-
-
-    <string-array name="brands">
-
-        <item>Markalar</item>
-        <item>Opet</item>
-        <item>Shell</item>
-        <item>Petrol Ofisi</item>
-        <item>Aytemiz</item>
-        <item>Energy</item>
-        <item>Bp</item>
-        <item>Total</item>
-
-    </string-array>
-
-    <string-array name="facilities">
-
-        <item>Sosyal Tesisler</item>
-        <item>Hava ve su</item>
-        <item>Market</item>
-        <item>Restaurant</item>
-        <item>ATM</item>
-
-    </string-array>
 
 
 </resources>
