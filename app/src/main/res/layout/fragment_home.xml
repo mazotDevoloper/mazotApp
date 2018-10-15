@@ -36,6 +36,7 @@
 
         <TextView
             android:layout_width="match_parent"
+            ma
             android:textSize="15sp"
             android:text="@string/nearStation"
             android:layout_height="30dp" />
