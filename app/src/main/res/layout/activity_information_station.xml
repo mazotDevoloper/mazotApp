@@ -56,7 +56,7 @@
             android:layout_width="350dp"
             android:layout_marginTop="20dp"
             android:text="@string/stationInfoFeatures"
-            android:textSize="25sp"
+            android:textSize="23sp"
             android:paddingLeft="20dp"
             android:textStyle="bold"
             android:layout_height="40dp" />

@@ -15,7 +15,7 @@ import java.util.List;
 public class PrivateAdapter extends BaseAdapter{
 
     private LayoutInflater stationLayoutInflater;
-    TextView stationNameT,stationPrGasoline;
+    TextView stationNameT,stationPrice,stationDistance;
     ImageView stationImg;
 
      List<StationModel> stationLst  = new ArrayList<>();
@@ -51,15 +51,17 @@ public class PrivateAdapter extends BaseAdapter{
         View lineVisibility = stationLayoutInflater.inflate(R.layout.station,null);
 
         stationNameT = lineVisibility.findViewById(R.id.tStationName);
-        stationPrGasoline = lineVisibility.findViewById(R.id.tStPrGasoline);
+        stationPrice = lineVisibility.findViewById(R.id.tStPrice);
         stationImg = lineVisibility.findViewById(R.id.imgStationPhoto);
+        stationDistance = lineVisibility.findViewById(R.id.tStDistance);
 
 
         StationModel stationModel = stationLst.get(position);
 
         stationNameT.setText(stationModel.getStationName());
-        stationPrGasoline.setText(stationModel.getStationPrGasoline());
+        stationPrice.setText(stationModel.getStationPrice());
         stationImg.setImageResource(stationModel.getStationLogo());
+        stationDistance.setText(stationModel.getStDistance());
 
 
         return lineVisibility;

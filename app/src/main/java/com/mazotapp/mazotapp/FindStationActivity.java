@@ -156,18 +156,31 @@ public class FindStationActivity extends AppCompatActivity {
                         }
                         if(rb.getText().equals("LPG")){
                             boolLPG = true;
+                        }else{
+                            boolLPG = false;
+                        }
+                        if(rb.getText().equals("Benzin")){
+                            boolGasoline = true;
+                        }else{
+                            boolGasoline = false;
                         }
 
                         //İstasyon kriterlerinin kontrolü
 
                         if(cbLowPrice.isChecked()){
                             boolLowPrice = true;
+                        }else{
+                            boolLowPrice = false;
                         }
                         if(cbDistance.isChecked()){
                             boolDistance = true;
+                        }else{
+                            boolDistance = false;
                         }
                         if(cbBestToilet.isChecked()){
                             boolToilet = true;
+                        }else {
+                            boolToilet = false;
                         }
 
                         Bundle userChoice = new Bundle();

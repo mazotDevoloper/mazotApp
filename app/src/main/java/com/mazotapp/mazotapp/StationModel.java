@@ -4,17 +4,18 @@ public class StationModel {
 
     private int stationLogo,stPhoto;
     private double stPositionX,stPositionY;
-    private String stationName,stationPrGasoline,stationInfo;
+    private String stationName,stationPrice,stationInfo,stDistance;
 
-    public StationModel(int stationLogo,int stPhoto, String stationName, String stationPrGasoline, String stationInfo,double stPositionX,double stPositionY){
+    public StationModel(int stationLogo,int stPhoto, String stationName, String stationPrice,String stDistance, String stationInfo,double stPositionX,double stPositionY){
 
         this.stationLogo = stationLogo;
         this.stPhoto = stPhoto;
         this.stationName = stationName;
-        this.stationPrGasoline = stationPrGasoline;
+        this.stationPrice = stationPrice;
         this.stationInfo = stationInfo;
         this.stPositionX = stPositionX;
         this.stPositionY = stPositionY;
+        this.stDistance = stDistance;
 
     }
 
@@ -58,12 +59,20 @@ public class StationModel {
         this.stationName = stationName;
     }
 
-    public String getStationPrGasoline() {
-        return stationPrGasoline;
+    public String getStationPrice() {
+        return stationPrice;
     }
 
-    public void setStationPrGasoline(String stationPrGasoline) {
-        this.stationPrGasoline = stationPrGasoline;
+    public void setStationPrice(String stationPrice) {
+        this.stationPrice = stationPrice;
+    }
+
+    public String getStDistance() {
+        return stDistance;
+    }
+
+    public void setStDistance(String stDistance) {
+        this.stDistance = stDistance;
     }
 
     public String getStationInfo() {
