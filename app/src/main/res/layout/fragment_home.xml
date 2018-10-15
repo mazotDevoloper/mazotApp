@@ -6,6 +6,14 @@
     android:orientation="vertical"
     tools:context=".HomeFragment">
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_marginLeft="360dp"
+        android:layout_marginTop="150dp"
+        android:id="@+id/imgLogout"
+        android:src="@drawable/logout_icon"
+        android:layout_height="40dp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:orientation="horizontal"
@@ -36,7 +44,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            ma
+            android:layout_marginLeft="10dp"
             android:textSize="15sp"
             android:text="@string/nearStation"
             android:layout_height="30dp" />
@@ -118,7 +126,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="310dp"
+        android:layout_marginTop="320dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="300dp">
@@ -126,6 +134,7 @@
         <TextView
             android:layout_width="match_parent"
             android:textSize="15sp"
+            android:layout_marginLeft="10dp"
             android:text="@string/mostUseStations"
             android:layout_height="30dp" />
 
@@ -365,7 +374,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:padding="16dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="630dp"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
@@ -373,19 +382,12 @@
         <Button
             android:id="@+id/btnGoFindStation"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="60dp"
             android:background="@drawable/oval"
             android:text="@string/goFindStationB"
             android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/btnSignOut"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dip"
-            android:background="@drawable/oval"
-            android:text="@string/exitB"
-            android:textColor="@color/white" />
+
 
     </LinearLayout>
 

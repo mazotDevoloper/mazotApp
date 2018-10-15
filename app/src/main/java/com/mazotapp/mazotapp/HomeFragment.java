@@ -5,35 +5,30 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HomeFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class HomeFragment extends Fragment {
+
     Button btnSignOut, btnGoFindStation;
     FirebaseAuth auth;
     FirebaseUser user;
+    Intent intentInfoSt;
+    String infoStation,infoStName;
+    Bundle stationInformations;
+    int infoStPhoto;
+    double infoStPositionX,infoStPositionY;
+    ImageView imgLogout;
+    CardView cardNear,cardMostUse1,cardMostUse2,cardMostUse3;
 
     private OnFragmentInteractionListener mListener;
 
@@ -41,42 +36,80 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home,container,false);
+        final View view = inflater.inflate(R.layout.fragment_home,container,false);
 
-        btnSignOut = view.findViewById(R.id.btnSignOut);
+        cardNear = view.findViewById(R.id.card_nearStation);
+        cardMostUse1 = view.findViewById(R.id.card_mostUseStations1);
+        cardMostUse2 = view.findViewById(R.id.card_mostUseStations2);
+        cardMostUse3 = view.findViewById(R.id.card_mostUseStations3);
+
+        imgLogout = view.findViewById(R.id.imgLogout);
         btnGoFindStation = view.findViewById(R.id.btnGoFindStation);
 
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
+        intentInfoSt = new Intent(view.getContext(),InformationStationActivity.class);
+
+        stationInformations = new Bundle();
+
+
+        cardNear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                infoStation = "OPET Şişli akaryakıt istasyonu, 24 saat hizmet vermektedir. Akaryakıt istasyonunda market, hava ve su makinesi, tuvalet, engelli tuvaleti, bebek bakım ünitesi bulunmaktadır.";
+                infoStName = "OPET  GÜRCAN Petrol";
+                infoStPositionX = 41.048434;
+                infoStPositionY = 28.984981;
+                infoStPhoto = R.drawable.opet_gurcan_photo;
+                intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
+            }
+        });
+
+        cardMostUse1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                infoStation = "Shell Şişli akaryakıt istasyonu, 24 saat hizmet vermektedir. Akaryakıt istasyonunda market, hava ve su makinesi, para çekebileceğiniz bir ATM ve tuvalet bulunmaktadır.";
+                infoStName = "Shell Şişli Petrol";
+                infoStPositionX = 41.069317;
+                infoStPositionY = 29.004395;
+                infoStPhoto = R.drawable.shell_shell_photo;
+                intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
+
+            }
+        });
+
+        cardMostUse2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                infoStation = "Petrol Ofisi Şişli akaryakıt istasyonu, 24 saat hizmet vermektedir. Akaryakıt istasyonunda yıkama makinesi, hava ve su makinesi, tuvalet bulunmaktadır.";
+                infoStName = "Petrol Ofisi ORSAY";
+                infoStPositionX = 41.047798;
+                infoStPositionY = 28.968614;
+                infoStPhoto = R.drawable.petrolofisi_orsay_photo;
+                intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
+
+
+            }
+        });
+
+        cardMostUse3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                infoStation = "AYTEMİZ Şişli akaryakıt istasyonunda market, oto yıkama, hava ve su makinesi, tuvalet bulunmaktadır.";
+                infoStName = "AYTEMİZ   ŞİŞLİ Petrol ";
+                infoStPositionX = 41.058522;
+                infoStPositionY = 28.965656;
+                infoStPhoto = R.drawable.aytemiz_sisli_photo;
+                intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
+
+            }
+        });
+
+        imgLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 auth = FirebaseAuth.getInstance();
@@ -125,19 +158,22 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void intent(double infoStPositionX,double infoStPositionY,int infoStPhoto,String infoStName,String infoStation){
+
+        stationInformations.putDouble("infoStPositionX",infoStPositionX);
+        stationInformations.putDouble("infoStPositionY",infoStPositionY);
+        stationInformations.putInt("infoStPhoto",infoStPhoto);
+        stationInformations.putString("infoStName",infoStName);
+        stationInformations.putString("infoStation",infoStation);
+
+        intentInfoSt.putExtras(stationInformations);
+
+        startActivity(intentInfoSt);
     }
     
 }
