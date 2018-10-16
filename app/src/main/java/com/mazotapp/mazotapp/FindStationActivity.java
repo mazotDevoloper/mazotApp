@@ -16,13 +16,13 @@ import android.widget.Toast;
 
 public class FindStationActivity extends AppCompatActivity {
 
-     Button btnFindStation,btnSocialFacility,btnBrands;
+     Button btnFindStation;
      ImageView backIcon;
      CheckBox cbLowPrice,cbDistance,cbBestToilet;
      RadioGroup rgCarFuel;
      RadioButton rbGasoline,rbDiesel,rbLPG,rb;
      Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet,boolAirWater,boolMarket,boolRestaurant,boolATM,boolOpet,boolShell,
-             boolTotal,boolBp,boolPetrolOffice,boolAytemiz,boolEnergy,boolSpNothingBrands,boolSpNothingFacilities;
+             boolTotal,boolBp,boolPetrolOffice,boolAytemiz,boolEnergy,boolOpenBrands,boolOpenFacilities;
 
 
     @Override
@@ -38,10 +38,6 @@ public class FindStationActivity extends AppCompatActivity {
         boolToilet =  false;
 
 
-
-
-        btnBrands = findViewById(R.id.btnBrands);
-        btnSocialFacility = findViewById(R.id.btnSocialFacility);
         btnFindStation = findViewById(R.id.btnFindStation);
 
         backIcon = findViewById(R.id.imgBack_icon);
@@ -57,22 +53,6 @@ public class FindStationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intenthome = new Intent(FindStationActivity.this,HomeActivity.class);
                 startActivity(intenthome);
-            }
-        });
-
-        btnSocialFacility.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentChooseFacility = new Intent(FindStationActivity.this,ChooseSocialFacility.class);
-                startActivity(intentChooseFacility);
-            }
-        });
-
-        btnBrands.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentChooseBrands = new Intent(FindStationActivity.this,ChooseBrands.class);
-                startActivity(intentChooseBrands);
             }
         });
 

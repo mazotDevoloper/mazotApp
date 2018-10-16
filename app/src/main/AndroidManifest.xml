@@ -37,8 +37,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".ChooseSocialFacility" />
-        <activity android:name=".ChooseBrands"></activity>
     </application>
 
 </manifest>
