@@ -1,12 +1,17 @@
 package com.mazotapp.mazotapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 /**
@@ -26,6 +31,9 @@ public class SettingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Button btnLogOut;
+    FirebaseAuth auth;
+    FirebaseUser user;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,6 +72,22 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        final View view = inflater.inflate(R.layout.fragment_settings,container,false);
+
+        btnLogOut = (Button) view.findViewById(R.id.btnLogOut);
+
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth = FirebaseAuth.getInstance();
+                user = auth.getCurrentUser();
+                FirebaseAuth.getInstance().signOut();
+                Intent intentLogin = new Intent(view.getContext(), LoginActivity.class);
+                startActivity(intentLogin);
+
+            }
+        });
+
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 

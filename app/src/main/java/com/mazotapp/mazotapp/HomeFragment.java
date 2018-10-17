@@ -19,15 +19,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeFragment extends Fragment {
 
-    Button btnSignOut, btnGoFindStation;
-    FirebaseAuth auth;
-    FirebaseUser user;
+    Button btnGoFindStation;
     Intent intentInfoSt;
     String infoStation,infoStName;
     Bundle stationInformations;
     int infoStPhoto;
     double infoStPositionX,infoStPositionY;
-    ImageView imgLogout;
     CardView cardNear,cardMostUse1,cardMostUse2,cardMostUse3;
 
     private OnFragmentInteractionListener mListener;
@@ -46,7 +43,6 @@ public class HomeFragment extends Fragment {
         cardMostUse2 = view.findViewById(R.id.card_mostUseStations2);
         cardMostUse3 = view.findViewById(R.id.card_mostUseStations3);
 
-        imgLogout = view.findViewById(R.id.imgLogout);
         btnGoFindStation = view.findViewById(R.id.btnGoFindStation);
 
         intentInfoSt = new Intent(view.getContext(),InformationStationActivity.class);
@@ -58,7 +54,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 infoStation = "OPET Şişli akaryakıt istasyonu, 24 saat hizmet vermektedir. Akaryakıt istasyonunda market, hava ve su makinesi, tuvalet, engelli tuvaleti, bebek bakım ünitesi bulunmaktadır.";
-                infoStName = "OPET  GÜRCAN Petrol";
+                infoStName = "OPET İstanbul-Şişli GÜRCAN";
                 infoStPositionX = 41.048434;
                 infoStPositionY = 28.984981;
                 infoStPhoto = R.drawable.opet_gurcan_photo;
@@ -106,19 +102,6 @@ public class HomeFragment extends Fragment {
                 infoStPhoto = R.drawable.aytemiz_sisli_photo;
                 intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
 
-            }
-        });
-
-        imgLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth = FirebaseAuth.getInstance();
-                user = auth.getCurrentUser();
-                auth.signOut();
-                if (auth.getCurrentUser() == null) {
-                    Intent intentLogin = new Intent(view.getContext(), LoginActivity.class);
-                    startActivity(intentLogin);
-                }
             }
         });
 

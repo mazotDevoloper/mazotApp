@@ -18,11 +18,11 @@ public class FindStationActivity extends AppCompatActivity {
 
      Button btnFindStation;
      ImageView backIcon;
-     CheckBox cbLowPrice,cbDistance,cbBestToilet;
+     CheckBox cbLowPrice,cbDistance,cbBestToilet,cbOpet,cbShell,cbTotal,cbEnergy,cbPetrolOfisi,cbAytemiz,cbBp;
      RadioGroup rgCarFuel;
      RadioButton rbGasoline,rbDiesel,rbLPG,rb;
-     Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet,boolAirWater,boolMarket,boolRestaurant,boolATM,boolOpet,boolShell,
-             boolTotal,boolBp,boolPetrolOffice,boolAytemiz,boolEnergy,boolOpenBrands,boolOpenFacilities;
+     Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet,boolOpet,boolShell,
+             boolTotal,boolBp,boolPetrolOffice,boolAytemiz,boolEnergy;
 
 
     @Override
@@ -36,7 +36,13 @@ public class FindStationActivity extends AppCompatActivity {
         boolLowPrice = false;
         boolLPG = false;
         boolToilet =  false;
-
+        boolOpet = false;
+        boolAytemiz = false;
+        boolShell = false;
+        boolEnergy = false;
+        boolTotal = false;
+        boolBp = false;
+        boolPetrolOffice = false;
 
         btnFindStation = findViewById(R.id.btnFindStation);
 
@@ -65,7 +71,7 @@ public class FindStationActivity extends AppCompatActivity {
                 rb = findViewById(radioButtonId);
 
                 if(rb == null){
-                    Toast.makeText(FindStationActivity.this, "Aracınızın akaryakıt türünü boş bırakamassınız!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FindStationActivity.this, "Aracınızın akaryakıt türünü boş bırakamazsınız!", Toast.LENGTH_SHORT).show();
                 }else{
                     if( cbBestToilet.isChecked() || cbDistance.isChecked() || cbLowPrice.isChecked()){
 
@@ -113,6 +119,7 @@ public class FindStationActivity extends AppCompatActivity {
                         userChoice.putBoolean("boolLowPrice",boolLowPrice);
                         userChoice.putBoolean("boolLPG",boolLPG);
                         userChoice.putBoolean("boolToilet",boolToilet);
+
 
                         Intent stationList = new Intent(FindStationActivity.this,StationListActivity.class);
                         stationList.putExtras(userChoice);

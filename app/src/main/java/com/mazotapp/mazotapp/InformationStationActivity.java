@@ -39,6 +39,7 @@ public class InformationStationActivity extends AppCompatActivity {
         stPositionY = stationInformation.getDouble("infoStPositionY");
         stationName = stationInformation.getString("infoStName");
         stationInfo = stationInformation.getString("infoStation");
+        
         stPhoto = stationInformation.getInt("infoStPhoto");
 
         //gelen bilgileri yerlerine yazdırıyorum
@@ -52,8 +53,8 @@ public class InformationStationActivity extends AppCompatActivity {
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentInfoSt = new Intent(InformationStationActivity.this,StationListActivity.class);
-                startActivity(intentInfoSt);
+                Intent intentFindSt = new Intent(InformationStationActivity.this,FindStationActivity.class);
+                startActivity(intentFindSt);
             }
         });
 
