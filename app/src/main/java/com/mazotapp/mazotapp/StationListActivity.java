@@ -150,6 +150,7 @@ public class StationListActivity extends AppCompatActivity {
         //istasyon listesi oluşturuyorum parametrelere göre
         PrivateAdapter station = new PrivateAdapter(StationListActivity.this,addStation);
 
+
         //istasyon listesini adaptöre yolluyoruz
         lvStations.setAdapter(station);
 
