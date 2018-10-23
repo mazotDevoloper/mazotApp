@@ -1,4 +1,4 @@
-package com.mazotapp.mazotapp;
+package com.mazotapp.mazotapp.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mazotapp.mazotapp.R;
 
 public class InformationStationActivity extends AppCompatActivity {
 
@@ -53,8 +55,7 @@ public class InformationStationActivity extends AppCompatActivity {
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentFindSt = new Intent(InformationStationActivity.this,FindStationActivity.class);
-                startActivity(intentFindSt);
+                finish();
             }
         });
 

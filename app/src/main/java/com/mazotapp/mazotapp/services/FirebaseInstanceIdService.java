@@ -1,4 +1,4 @@
-package com.mazotapp.mazotapp;
+package com.mazotapp.mazotapp.services;
 
 
 import com.google.firebase.iid.FirebaseInstanceId;

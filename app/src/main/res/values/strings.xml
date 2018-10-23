@@ -6,7 +6,8 @@
     <string name="againPassword">Parola Tekrarı</string>
     <string name="loginB">Giriş Yap</string>
     <string name="registerB">Kayıt Ol</string>
-    <string name="nameAndSurname">Ad Soyad</string>
+    <string name="name">İsim</string>
+    <string name="surname">Soyisim</string>
     <string name="verifyPhoneNumberEd">Doğrulama kodu</string>
     <string name="loginT"><u>Giriş yapmak için tıklayınız.</u></string>
     <string name="registerT"><u>Kayıt olmak için tıklayınız.</u>.</string>
@@ -50,7 +51,6 @@
     <string name="Bp">Bp </string>
     <string name="Energy">Energy </string>
     <string name="ConfirmB">Onayla </string>
-
 
 
 </resources>

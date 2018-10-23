@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgMazot"
+        android:layout_below="@+id/topPanel"
+        android:layout_width="205dp"
+        android:src="@drawable/mazoticon"
+        android:layout_marginStart="100dp"
+        android:layout_height="75dp" />
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/top_color"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgBack_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back_icon" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/mazot_logo_top" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_above="@+id/btnFeedbackPanel"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:paddingRight="100dp"
+        android:layout_below="@+id/imgMazot"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:padding="5dp"
+            android:background="@drawable/edit_text_oval_top"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="Mesajınız"
+            android:padding="5dp"
+            android:background="@drawable/edit_text_oval_bottom"
+            android:inputType="textMultiLine" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btnFeedbackPanel"
+        android:layout_width="match_parent"
+        android:paddingHorizontal="25dp"
+        android:layout_height="100dp">
+
+        <Button
+            android:id="@+id/btnFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/button_oval"
+            android:text="Gönder"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-permission android:name="android.permision.CALL_PHONE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/mazotlogo"
@@ -12,31 +14,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".VerifyPhoneNumberActivity" />
-        <activity android:name=".FindStationActivity" />
-        <activity android:name=".StationListActivity" />
-        <activity android:name=".InformationStationActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.VerifyPhoneNumberActivity" />
+        <activity android:name=".activities.FindStationActivity" />
+        <activity android:name=".activities.StationListActivity" />
+        <activity android:name=".activities.InformationStationActivity" />
 
-        <service android:name=".FirebaseInstanceIdService">
+        <service android:name=".services.FirebaseInstanceIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".FireBaseMessagingServices">
+        <service android:name=".services.FireBaseMessagingServices">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
+        <activity android:name=".activities.FeedbackActivity"></activity>
     </application>
 
 </manifest>

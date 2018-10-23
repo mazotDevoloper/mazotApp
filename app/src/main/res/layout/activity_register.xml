@@ -21,16 +21,26 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/etNameAndSurname"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:padding="5dp"
             android:background="@drawable/edit_text_oval_top"
-            android:hint="@string/nameAndSurname"
+            android:hint="@string/name"
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true" />
 
+        <EditText
+            android:id="@+id/etSurname"
+            android:layout_width="match_parent"
+            android:background="@drawable/edit_text_oval_middle"
+            android:layout_height="45dp"
+            android:padding="5dp"
+            android:hint="@string/surname"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/etEmail"
@@ -57,19 +67,6 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/etAgainPassword"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:focusableInTouchMode="true"
-            android:padding="5dp"
-            android:background="@drawable/edit_text_oval_middle"
-            android:hint="@string/againPassword"
-            android:imeOptions="actionUnspecified"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:singleLine="true" />
-
-        <EditText
             android:id="@+id/etMobileNumber"
             android:layout_width="match_parent"
             android:padding="5dp"
@@ -78,7 +75,7 @@
             android:focusableInTouchMode="true"
             android:hint="@string/mobilNumber"
             android:imeOptions="actionUnspecified"
-            android:inputType="numberPassword"
+            android:inputType="phone"
             android:singleLine="true" />
 
 
@@ -87,6 +84,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="20dp"
         android:paddingHorizontal="25dp"
         android:layout_height="wrap_content">
 
@@ -95,14 +93,10 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
             android:background="@drawable/button_oval"
             android:text="@string/registerB"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -110,8 +104,8 @@
         android:gravity="center"
         android:id="@+id/tLogin"
         android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
         android:text="@string/loginT"
         android:textStyle="bold|italic"/>
 

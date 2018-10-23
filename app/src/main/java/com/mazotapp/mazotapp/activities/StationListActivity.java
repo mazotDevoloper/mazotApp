@@ -1,12 +1,23 @@
-package com.mazotapp.mazotapp;
+package com.mazotapp.mazotapp.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.mazotapp.mazotapp.adapters.PrivateAdapter;
+import com.mazotapp.mazotapp.R;
+import com.mazotapp.mazotapp.models.StationModel;
+import com.mazotapp.mazotapp.models.UserModelRegister;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +27,8 @@ public class StationListActivity extends AppCompatActivity {
 
     ImageView backIcon;
     private ListView lvStations;
+    DatabaseReference databaseReference;
+    FirebaseDatabase database;
     String fuelType;
     Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet,boolSocialFacility,boolStationBrands;
     private List<StationModel> addStation = new ArrayList<StationModel>();
@@ -29,6 +42,9 @@ public class StationListActivity extends AppCompatActivity {
         backIcon = findViewById(R.id.imgBack_icon);
 
         Bundle userChoice = getIntent().getExtras();
+
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Stations");
 
         //boolean ları bundle la diğer tarafından çekilen yer
 
@@ -54,6 +70,8 @@ public class StationListActivity extends AppCompatActivity {
         }
 
         //istasyon ekleme
+
+        /*
 
         if(boolLowPrice && boolDistance && !boolToilet){
             addStation.add(new StationModel(R.drawable.shell_logo, R.drawable.shell_shell_photo, "İstanbul Şişli SHELL ", fuelType + " fiyatı: 6,83tl", "Mesafe:2.0km", "Shell Şişli akaryakıt istasyonu, 24 saat hizmet vermektedir. Akaryakıt istasyonunda market, hava ve su makinesi, para çekebileceğiniz bir ATM ve tuvalet bulunmaktadır.", 41.069317, 29.004395));
@@ -147,12 +165,16 @@ public class StationListActivity extends AppCompatActivity {
             addStation.add(new StationModel(R.drawable.shell_logo, R.drawable.shell_shell_photo, "İstanbul Şişli SHELL ", fuelType + " fiyatı: 6,83tl", "Mesafe:2.0km", "Shell Şişli akaryakıt istasyonu, 24 saat hizmet vermektedir. Akaryakıt istasyonunda market, hava ve su makinesi, para çekebileceğiniz bir ATM ve tuvalet bulunmaktadır.", 41.069317, 29.004395));
         }
 
+        */
+
         //istasyon listesi oluşturuyorum parametrelere göre
-        PrivateAdapter station = new PrivateAdapter(StationListActivity.this,addStation);
+
+        //PrivateAdapter station = new PrivateAdapter(StationListActivity.this,addStation);
 
 
         //istasyon listesini adaptöre yolluyoruz
-        lvStations.setAdapter(station);
+
+        //lvStations.setAdapter(station);
 
         lvStations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -187,8 +209,31 @@ public class StationListActivity extends AppCompatActivity {
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentFindStation = new Intent(StationListActivity.this,FindStationActivity.class);
-                startActivity(intentFindStation);
+                finish();
+            }
+        });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                    StationModel stationModel = userSnapshot.getValue(StationModel.class);
+                    addStation.add(stationModel);
+                }
+                PrivateAdapter station = new PrivateAdapter(StationListActivity.this,addStation);
+                lvStations.setAdapter(station);
+
+
+            }
+
+            @Override
+            public void onCancelled( DatabaseError databaseError) {
+
             }
         });
     }

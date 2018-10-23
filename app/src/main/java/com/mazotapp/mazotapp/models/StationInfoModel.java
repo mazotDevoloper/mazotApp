@@ -1,22 +1,18 @@
-package com.mazotapp.mazotapp;
+package com.mazotapp.mazotapp.models;
 
-public class StationModel {
+public class StationInfoModel {
 
-    private int stationLogo,stPhoto;
+    private int stPhoto;
     private double stPositionX,stPositionY;
-    private String stationName,stationPrice,stationInfo,stDistance;
+    private String stationName,stationPrice,stationInfo;
 
-    public StationModel(int stationLogo,int stPhoto, String stationName, String stationPrice,String stDistance, String stationInfo,double stPositionX,double stPositionY){
-
-        this.stationLogo = stationLogo;
+    public StationInfoModel(int stPhoto, double stPositionX, double stPositionY, String stationName, String stationPrice, String stationInfo) {
         this.stPhoto = stPhoto;
+        this.stPositionX = stPositionX;
+        this.stPositionY = stPositionY;
         this.stationName = stationName;
         this.stationPrice = stationPrice;
         this.stationInfo = stationInfo;
-        this.stPositionX = stPositionX;
-        this.stPositionY = stPositionY;
-        this.stDistance = stDistance;
-
     }
 
     public int getStPhoto() {
@@ -43,14 +39,6 @@ public class StationModel {
         this.stPositionY = stPositionY;
     }
 
-    public int getStationLogo() {
-        return stationLogo;
-    }
-
-    public void setStationLogo(int stationLogo) {
-        this.stationLogo = stationLogo;
-    }
-
     public String getStationName() {
         return stationName;
     }
@@ -65,14 +53,6 @@ public class StationModel {
 
     public void setStationPrice(String stationPrice) {
         this.stationPrice = stationPrice;
-    }
-
-    public String getStDistance() {
-        return stDistance;
-    }
-
-    public void setStDistance(String stDistance) {
-        this.stDistance = stDistance;
     }
 
     public String getStationInfo() {

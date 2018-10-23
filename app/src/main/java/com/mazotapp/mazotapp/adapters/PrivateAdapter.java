@@ -1,4 +1,4 @@
-package com.mazotapp.mazotapp;
+package com.mazotapp.mazotapp.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mazotapp.mazotapp.R;
+import com.mazotapp.mazotapp.models.StationModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,20 +1,19 @@
-package com.mazotapp.mazotapp;
+package com.mazotapp.mazotapp.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
+import com.mazotapp.mazotapp.activities.FindStationActivity;
+import com.mazotapp.mazotapp.activities.InformationStationActivity;
+import com.mazotapp.mazotapp.R;
 
 
 public class HomeFragment extends Fragment {
@@ -24,19 +23,21 @@ public class HomeFragment extends Fragment {
     String infoStation,infoStName;
     Bundle stationInformations;
     int infoStPhoto;
+    View view;
     double infoStPositionX,infoStPositionY;
     CardView cardNear,cardMostUse1,cardMostUse2,cardMostUse3;
 
-    private OnFragmentInteractionListener mListener;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_home,container,false);
+        view = inflater.inflate(R.layout.fragment_home,container,false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         cardNear = view.findViewById(R.id.card_nearStation);
         cardMostUse1 = view.findViewById(R.id.card_mostUseStations1);
@@ -112,41 +113,9 @@ public class HomeFragment extends Fragment {
                 startActivity(intentFindStation);
             }
         });
-
-        // Inflate the layout for this fragment
-        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-//            throw new RuntimeException(context.toString()
-     //               + " must implement OnFragmentInteractionListener");
-       }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-    public void intent(double infoStPositionX,double infoStPositionY,int infoStPhoto,String infoStName,String infoStation){
+    public void intent(double infoStPositionX, double infoStPositionY, int infoStPhoto, String infoStName, String infoStation){
 
         stationInformations.putDouble("infoStPositionX",infoStPositionX);
         stationInformations.putDouble("infoStPositionY",infoStPositionY);

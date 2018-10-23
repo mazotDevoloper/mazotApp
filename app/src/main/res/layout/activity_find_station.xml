@@ -76,7 +76,7 @@
                 android:id="@+id/rgCarFuel"
                 android:layout_width="350dp"
                 android:layout_height="60dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="60dp"
                 android:orientation="horizontal">
 
@@ -176,21 +176,21 @@
                 <TextView
                     android:layout_width="80dp"
                     android:text="@string/lowPriceCB"
-                    android:layout_marginLeft="45dp"
-                    android:textSize="20sp"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="15sp"
                     android:layout_height="30dp" />
 
                 <TextView
                     android:layout_width="100dp"
                     android:text="@string/distanceCB"
                     android:layout_marginLeft="15dp"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:layout_height="30dp" />
 
                 <TextView
                     android:layout_width="140dp"
                     android:text="@string/toiletCB"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:layout_height="30dp" />
 
             </LinearLayout>

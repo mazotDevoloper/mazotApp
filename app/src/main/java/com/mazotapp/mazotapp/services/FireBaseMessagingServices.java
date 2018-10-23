@@ -1,4 +1,4 @@
-package com.mazotapp.mazotapp;
+package com.mazotapp.mazotapp.services;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,6 +8,8 @@ import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.mazotapp.mazotapp.R;
+import com.mazotapp.mazotapp.activities.HomeActivity;
 
 
 public class FireBaseMessagingServices extends FirebaseMessagingService {
