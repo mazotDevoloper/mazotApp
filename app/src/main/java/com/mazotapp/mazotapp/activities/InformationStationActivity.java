@@ -41,6 +41,7 @@ public class InformationStationActivity extends AppCompatActivity {
         stPositionY = stationInformation.getDouble("infoStPositionY");
         stationName = stationInformation.getString("infoStName");
         stationInfo = stationInformation.getString("infoStation");
+
         stPhoto = stationInformation.getString("infoStPhoto");
 
         //gelen bilgileri yerlerine yazdırıyorum
