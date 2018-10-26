@@ -19,6 +19,8 @@ public class StationModel {
 
     }
 
+    public StationModel(){}
+
     public int getStPhoto() {
         return stPhoto;
     }
