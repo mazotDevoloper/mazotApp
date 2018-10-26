@@ -124,6 +124,7 @@ public class StationListActivity extends AppCompatActivity {
                     StationModel value = listSnap.getValue(StationModel.class);
                     String stationName = value.getStationName();
                     String stDistance = value.getStDistance();
+
                     String stPrice = value.getStationPrice();
                     Double stPositionX = value.getStPositionX();
                     Double stPositionY = value.getStPositionY();
