@@ -2,11 +2,10 @@ package com.mazotapp.mazotapp.models;
 
 public class StationModel {
 
-    private int stationLogo,stPhoto;
     private double stPositionX,stPositionY;
-    private String stationName,stationPrice,stationInfo,stDistance;
+    private String stationName,stationPrice,stationInfo,stDistance,stationLogo,stPhoto;
 
-    public StationModel(int stationLogo,int stPhoto, String stationName, String stationPrice,String stDistance, String stationInfo,double stPositionX,double stPositionY){
+    public StationModel(String stationLogo,String stPhoto, String stationName, String stationPrice,String stDistance, String stationInfo,double stPositionX,double stPositionY){
 
         this.stationLogo = stationLogo;
         this.stPhoto = stPhoto;
@@ -21,11 +20,19 @@ public class StationModel {
 
     public StationModel(){}
 
-    public int getStPhoto() {
+    public String getStationLogo() {
+        return stationLogo;
+    }
+
+    public void setStationLogo(String stationLogo) {
+        this.stationLogo = stationLogo;
+    }
+
+    public String getStPhoto() {
         return stPhoto;
     }
 
-    public void setStPhoto(int stPhoto) {
+    public void setStPhoto(String stPhoto) {
         this.stPhoto = stPhoto;
     }
 
@@ -45,13 +52,7 @@ public class StationModel {
         this.stPositionY = stPositionY;
     }
 
-    public int getStationLogo() {
-        return stationLogo;
-    }
 
-    public void setStationLogo(int stationLogo) {
-        this.stationLogo = stationLogo;
-    }
 
     public String getStationName() {
         return stationName;

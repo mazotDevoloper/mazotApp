@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.mazotapp.mazotapp.R;
 import com.mazotapp.mazotapp.models.StationModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class PrivateAdapter extends BaseAdapter{
 
         stationNameT.setText(stationModel.getStationName());
         stationPrice.setText(stationModel.getStationPrice());
-        stationImg.setImageResource(stationModel.getStationLogo());
+        Picasso.get().load(stationModel.getStationLogo()).into(stationImg);
         stationDistance.setText(stationModel.getStDistance());
 
 

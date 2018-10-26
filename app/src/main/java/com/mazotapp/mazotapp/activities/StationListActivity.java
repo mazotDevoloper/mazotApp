@@ -19,6 +19,7 @@ import com.mazotapp.mazotapp.adapters.PrivateAdapter;
 import com.mazotapp.mazotapp.R;
 import com.mazotapp.mazotapp.models.StationModel;
 import com.mazotapp.mazotapp.models.UserModelRegister;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,7 @@ public class StationListActivity extends AppCompatActivity {
                 String infoStName = addStation.get(position).getStationName();
                 String infoStPrice = addStation.get(position).getStationPrice();
 
-                int infoStPhoto = addStation.get(position).getStPhoto();
+                String infoStPhoto = addStation.get(position).getStPhoto();
 
                 double infoStPositionX = addStation.get(position).getStPositionX();
                 double infoStPositionY = addStation.get(position).getStPositionY();
@@ -88,7 +89,7 @@ public class StationListActivity extends AppCompatActivity {
                 Bundle stationInformations = new Bundle();
                 stationInformations.putDouble("infoStPositionX",infoStPositionX);
                 stationInformations.putDouble("infoStPositionY",infoStPositionY);
-                stationInformations.putInt("infoStPhoto",infoStPhoto);
+                stationInformations.putString("infoStPhoto",infoStPhoto);
                 stationInformations.putString("infoStName",infoStName);
                 stationInformations.putString("infoStPrice",infoStPrice);
                 stationInformations.putString("infoStation",infoStation);
@@ -127,13 +128,11 @@ public class StationListActivity extends AppCompatActivity {
                     Double stPositionX = value.getStPositionX();
                     Double stPositionY = value.getStPositionY();
                     String stInfo = value.getStationInfo();
+                    String stPhoto = value.getStPhoto();
+                    String stLogo = value.getStationLogo();
 
-                    //String ImageUrl = value.getSaloonImageURL();
 
-                    //Log.d("ImageURL",ImageUrl);
-                    Log.d("stationName",stationName);
-                    int a = 1;
-                    addStation.add(new StationModel(R.drawable.aytemiz_logo,R.drawable.total_total_photo,stationName,stPrice,stDistance,stInfo,stPositionX,stPositionY));
+                    addStation.add(new StationModel(stLogo,stPhoto,stationName,stPrice,stDistance,stInfo,stPositionX,stPositionY));
 
 
                     station.notifyDataSetChanged();

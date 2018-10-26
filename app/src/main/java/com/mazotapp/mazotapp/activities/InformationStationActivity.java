@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mazotapp.mazotapp.R;
+import com.squareup.picasso.Picasso;
 
 public class InformationStationActivity extends AppCompatActivity {
 
     TextView tvStationName,tvStationInfo;
-    String stationName,stationInfo;
+    String stationName,stationInfo,stPhoto;
     ImageView imgStation;
     Button btnOpenGoogleMap;
     ImageView backIcon;
-    int stPhoto;
     double stPositionX,stPositionY;
 
     @Override
@@ -41,12 +41,14 @@ public class InformationStationActivity extends AppCompatActivity {
         stPositionY = stationInformation.getDouble("infoStPositionY");
         stationName = stationInformation.getString("infoStName");
         stationInfo = stationInformation.getString("infoStation");
-
-        stPhoto = stationInformation.getInt("infoStPhoto");
+        stPhoto = stationInformation.getString("infoStPhoto");
 
         //gelen bilgileri yerlerine yazdırıyorum
 
-        imgStation.setImageResource(stPhoto);
+        Picasso.get().load(stPhoto).into(imgStation);
+
+
+        //imgStation.setImageResource(stPhoto);
         tvStationInfo.setText(stationInfo);
         tvStationName.setText(stationName);
 
