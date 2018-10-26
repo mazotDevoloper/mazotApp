@@ -47,7 +47,7 @@ public class InformationStationActivity extends AppCompatActivity {
 
         Picasso.get().load(stPhoto).into(imgStation);
 
-        
+
         //imgStation.setImageResource(stPhoto);
         tvStationInfo.setText(stationInfo);
         tvStationName.setText(stationName);
