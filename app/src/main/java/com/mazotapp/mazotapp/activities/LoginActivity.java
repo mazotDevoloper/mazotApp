@@ -33,7 +33,9 @@ public class LoginActivity extends AppCompatActivity {
         PD.setMessage("Yükleniyor...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
+
         auth = FirebaseAuth.getInstance();
+        
 
         inputEmail = findViewById(R.id.etEmail);
         inputPassword = findViewById(R.id.etPassword);
