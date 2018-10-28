@@ -1,11 +1,18 @@
 package com.mazotapp.mazotapp.activities;
 
-import android.app.ProgressDialog;
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,13 +23,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.mazotapp.mazotapp.R;
-import com.mazotapp.mazotapp.models.UserModelRegister;
+import com.mazotapp.mazotapp.models.UserModel;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -30,7 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private Button registerBtn;
     private TextView loginT;
-    private static final String TAG = "AddToDatabase";
     String id;
 
     DatabaseReference databaseReference;
@@ -38,11 +41,11 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         auth = FirebaseAuth.getInstance();
+
 
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
@@ -63,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override  public void onClick(View view) {
+
                  final String email = inputEmail.getText().toString().trim();
                  final String password = inputPassword.getText().toString().trim();
                  final String phoneNumber = inputPhoneNumber.getText().toString().trim();
@@ -73,16 +77,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                 userInformation.putString("userPhoneNumber",phoneNumber);
 
+
                 if (!password.isEmpty() && !email.isEmpty() && !phoneNumber.isEmpty() && !name.isEmpty() && !surname.isEmpty()) {
                     auth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (!task.isSuccessful()) {
-                                        Toast.makeText(
-                                                RegisterActivity.this,
-                                                "Plakanız oluşturulamadı :(",
-                                                Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterActivity.this, "Plakanız oluşturulamadı :(", Toast.LENGTH_LONG).show();
                                         inputEmail.setText("");
                                         inputName.setText("");
                                         inputSurname.setText("");
@@ -91,9 +93,9 @@ public class RegisterActivity extends AppCompatActivity {
                                     } else {
                                         id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                                        UserModelRegister registeredUser = new UserModelRegister(name,surname,phoneNumber,email,password);
+                                        UserModel user = new UserModel(name,surname,phoneNumber,email,password,0,0,0,0,0,0,0.0,0.0);
 
-                                        databaseReference.child(id).setValue(registeredUser);
+                                        databaseReference.child(id).setValue(user);
 
                                         Intent verifyPhoneNumber = new Intent(RegisterActivity.this,VerifyPhoneNumberActivity.class);
                                         verifyPhoneNumber.putExtras(userInformation);
@@ -103,10 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             });
                 } else {
-                    Toast.makeText(
-                            RegisterActivity.this,
-                            "Boş depoyla gidemessin dostum :(",
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Boş depoyla gidemessin dostum :(", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -119,5 +118,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
 }
 

@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         PD.setCanceledOnTouchOutside(false);
 
         auth = FirebaseAuth.getInstance();
-        
 
         inputEmail = findViewById(R.id.etEmail);
         inputPassword = findViewById(R.id.etPassword);
@@ -64,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                                         } else {
                                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                             startActivity(intent);
-                                            finish();
+                                            //finish();
                                         }
                                         PD.dismiss();
                                     }

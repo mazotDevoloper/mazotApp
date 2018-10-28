@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
                 infoStName = "OPET İstanbul-Şişli GÜRCAN";
                 infoStPositionX = 41.048434;
                 infoStPositionY = 28.984981;
-                infoStPhoto = R.drawable.opet_gurcan_photo;
+                infoStPhoto = 0;
                 intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
             }
         });
@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
                 infoStName = "Shell Şişli Petrol";
                 infoStPositionX = 41.069317;
                 infoStPositionY = 29.004395;
-                infoStPhoto = R.drawable.shell_shell_photo;
+                infoStPhoto = 0;
                 intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
 
             }
@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment {
                 infoStName = "Petrol Ofisi ORSAY";
                 infoStPositionX = 41.047798;
                 infoStPositionY = 28.968614;
-                infoStPhoto = R.drawable.petrolofisi_orsay_photo;
+                infoStPhoto = 0;
                 intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
 
 
@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment {
                 infoStName = "AYTEMİZ   ŞİŞLİ Petrol ";
                 infoStPositionX = 41.058522;
                 infoStPositionY = 28.965656;
-                infoStPhoto = R.drawable.aytemiz_sisli_photo;
+                infoStPhoto = 0;
                 intent(infoStPositionX,infoStPositionY,infoStPhoto,infoStName,infoStation);
 
             }

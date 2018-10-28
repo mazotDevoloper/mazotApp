@@ -17,11 +17,10 @@ public class FindStationActivity extends AppCompatActivity {
 
      Button btnFindStation;
      ImageView backIcon;
-     CheckBox cbLowPrice,cbDistance,cbBestToilet,cbOpet,cbShell,cbTotal,cbEnergy,cbPetrolOfisi,cbAytemiz,cbBp;
+     CheckBox cbLowPrice,cbDistance,cbBestToilet;
      RadioGroup rgCarFuel;
-     RadioButton rbGasoline,rbDiesel,rbLPG,rb;
-     Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet,boolOpet,boolShell,
-             boolTotal,boolBp,boolPetrolOffice,boolAytemiz,boolEnergy;
+     RadioButton rb;
+     Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet;
 
 
     @Override
@@ -35,13 +34,6 @@ public class FindStationActivity extends AppCompatActivity {
         boolLowPrice = false;
         boolLPG = false;
         boolToilet =  false;
-        boolOpet = false;
-        boolAytemiz = false;
-        boolShell = false;
-        boolEnergy = false;
-        boolTotal = false;
-        boolBp = false;
-        boolPetrolOffice = false;
 
         btnFindStation = findViewById(R.id.btnFindStation);
 

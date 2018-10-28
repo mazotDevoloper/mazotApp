@@ -8,23 +8,18 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.mazotapp.mazotapp.R;
 import com.mazotapp.mazotapp.fragments.CampaignFragment;
 import com.mazotapp.mazotapp.fragments.HomeFragment;
 import com.mazotapp.mazotapp.fragments.SettingsFragment;
-import com.mazotapp.mazotapp.models.UserModelRegister;
+import com.mazotapp.mazotapp.models.UserModel;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -35,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseUser user;
 
     String id;
-    UserModelRegister registeredUser;
+    UserModel registeredUser;
 
     DatabaseReference databaseReference;
     FirebaseDatabase database;
@@ -124,7 +119,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onDataChange( DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                    UserModelRegister registeredUser = userSnapshot.getValue(UserModelRegister.class);
+                    UserModel registeredUser = userSnapshot.getValue(UserModel.class);
                     //Log.d("lüleburgaz",registeredUser.getName());
                     Toast.makeText(HomeActivity.this, registeredUser.getName(), Toast.LENGTH_SHORT).show();
                 }

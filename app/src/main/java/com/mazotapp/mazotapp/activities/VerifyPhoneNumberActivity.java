@@ -23,14 +23,11 @@ import java.util.concurrent.TimeUnit;
 
 public class VerifyPhoneNumberActivity extends AppCompatActivity {
 
-    //These are the objects needed
-    //It is the verification id that will be sent to the user
+
     private String mVerificationId,phoneNumber,verifyCode;
 
-    //The edittext to input the code
     private EditText editTextCode;
 
-    //firebase auth object
     private FirebaseAuth mAuth;
 
 
@@ -39,26 +36,15 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_phone_number);
 
-        //initializing objects
         mAuth = FirebaseAuth.getInstance();
         editTextCode = findViewById(R.id.etVerifyPhoneNumber);
-
-
-        //getting mobile number from the previous activity
-        //and sending the verification code to the number
-
 
         Bundle userInformation = getIntent().getExtras();
         phoneNumber = userInformation.getString("userPhoneNumber");
 
-
-        //Intent intent = getIntent();
-        //String mobile = intent.getStringExtra("mobile");
         sendVerificationCode(phoneNumber);
 
 
-        //if the automatic sms detection did not work, user can also enter the code manually
-        //so adding a click listener to the button
         findViewById(R.id.btnContinue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,17 +54,12 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                     editTextCode.requestFocus();
                     return;
                 }
-
-                //verifying the code entered manually
                 verifyVerificationCode(code);
             }
         });
 
     }
 
-    //the method is sending verification code
-    //the country id is concatenated
-    //you can take the country id as user input as well
     private void sendVerificationCode(String mobile) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+90" + mobile,
@@ -109,6 +90,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
+            mAuth.getCurrentUser().delete();
         }
 
         @Override

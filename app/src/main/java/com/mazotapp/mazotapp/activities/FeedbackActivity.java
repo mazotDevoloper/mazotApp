@@ -13,8 +13,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mazotapp.mazotapp.R;
-import com.mazotapp.mazotapp.fragments.HomeFragment;
-import com.mazotapp.mazotapp.models.UserModelRegister;
 
 public class FeedbackActivity extends AppCompatActivity {
 

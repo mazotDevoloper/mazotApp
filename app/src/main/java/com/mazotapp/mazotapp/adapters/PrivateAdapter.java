@@ -63,7 +63,7 @@ public class PrivateAdapter extends BaseAdapter{
         StationModel stationModel = stationLst.get(position);
 
         stationNameT.setText(stationModel.getStationName());
-        stationPrice.setText(stationModel.getStationPrice());
+        stationPrice.setText(String.valueOf(stationModel.getStationPrice()));
         Picasso.get().load(stationModel.getStationLogo()).into(stationImg);
         stationDistance.setText(stationModel.getStDistance());
 

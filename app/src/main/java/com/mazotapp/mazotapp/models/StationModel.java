@@ -3,9 +3,10 @@ package com.mazotapp.mazotapp.models;
 public class StationModel {
 
     private double stPositionX,stPositionY;
-    private String stationName,stationPrice,stationInfo,stDistance,stationLogo,stPhoto;
+    private String stationName,stationInfo,stDistance,stationLogo,stPhoto;
+    private int stationPrice;
 
-    public StationModel(String stationLogo,String stPhoto, String stationName, String stationPrice,String stDistance, String stationInfo,double stPositionX,double stPositionY){
+    public StationModel(String stationLogo,String stPhoto, String stationName, int stationPrice,String stDistance, String stationInfo,double stPositionX,double stPositionY){
 
         this.stationLogo = stationLogo;
         this.stPhoto = stPhoto;
@@ -62,11 +63,11 @@ public class StationModel {
         this.stationName = stationName;
     }
 
-    public String getStationPrice() {
+    public int getStationPrice() {
         return stationPrice;
     }
 
-    public void setStationPrice(String stationPrice) {
+    public void setStationPrice(int stationPrice) {
         this.stationPrice = stationPrice;
     }
 
