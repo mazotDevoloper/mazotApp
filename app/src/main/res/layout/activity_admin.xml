@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.AdminActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="300dp"
+                android:padding="10dp"
+                android:hint="Adı"
+                android:id="@+id/adName"
+                android:background="@drawable/edit_text_oval"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_oval"
+                android:hint="Dizel Fiyatı"
+                android:id="@+id/adDieselPrice"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_oval"
+                android:hint="LPG  Fiyatı"
+                android:id="@+id/adLPGPrice"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_oval"
+                android:hint="Benzin Fiyatı"
+                android:id="@+id/adGasolinePrice"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:hint="Toilet Puanı "
+                android:id="@+id/adToilet"
+                android:background="@drawable/edit_text_oval"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:background="@drawable/edit_text_oval"
+                android:padding="10dp"
+                android:hint="Logo url"
+                android:id="@+id/adLogo"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:hint="İstasyon Fotorafı url"
+                android:background="@drawable/edit_text_oval"
+                android:padding="10dp"
+                android:id="@+id/adPhoto"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:hint="X kordinatları"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_oval"
+                android:id="@+id/adPositionX"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_oval"
+                android:id="@+id/adPositionY"
+                android:hint="Y kordinatları"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:layout_width="300dp"
+                android:id="@+id/adInfo"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_oval"
+                android:hint="Bilgileri"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:id="@+id/btnAddStation"
+                android:background="@drawable/button_oval"
+                android:layout_marginTop="20dp"
+                android:text="İstasyonu Ekle"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

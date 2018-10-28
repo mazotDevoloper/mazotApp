@@ -2,12 +2,13 @@ package com.mazotapp.mazotapp.models;
 
 public class StationModel {
 
-    private double stPositionX,stPositionY;
-    private String stationName,stationInfo,stDistance,stationLogo,stPhoto;
-    private int stationPrice;
+    private double stPositionX,stPositionY,stationPrice,stDiesel,stLPG,stGasoline;
+    private String stationName,stationInfo,stationLogo,stPhoto;
+    private int stCleanToilet;
 
-    public StationModel(String stationLogo,String stPhoto, String stationName, int stationPrice,String stDistance, String stationInfo,double stPositionX,double stPositionY){
+    public StationModel(String stationLogo,String stPhoto, String stationName,int stCleanToilet, double stationPrice,double stDiesel,double stGasoline,double stLPG, String stationInfo,double stPositionX,double stPositionY){
 
+        this.stCleanToilet = stCleanToilet;
         this.stationLogo = stationLogo;
         this.stPhoto = stPhoto;
         this.stationName = stationName;
@@ -15,11 +16,20 @@ public class StationModel {
         this.stationInfo = stationInfo;
         this.stPositionX = stPositionX;
         this.stPositionY = stPositionY;
-        this.stDistance = stDistance;
-
+        this.stDiesel = stDiesel;
+        this.stGasoline = stGasoline;
+        this.stLPG = stLPG;
     }
 
     public StationModel(){}
+
+    public int getStCleanToilet() {
+        return stCleanToilet;
+    }
+
+    public void setStCleanToilet(int stCleanToilet) {
+        this.stCleanToilet = stCleanToilet;
+    }
 
     public String getStationLogo() {
         return stationLogo;
@@ -53,7 +63,29 @@ public class StationModel {
         this.stPositionY = stPositionY;
     }
 
+    public double getStDiesel() {
+        return stDiesel;
+    }
 
+    public void setStDiesel(double stDiesel) {
+        this.stDiesel = stDiesel;
+    }
+
+    public double getStLPG() {
+        return stLPG;
+    }
+
+    public void setStLPG(double stLPG) {
+        this.stLPG = stLPG;
+    }
+
+    public double getStGasoline() {
+        return stGasoline;
+    }
+
+    public void setStGasoline(double stGasoline) {
+        this.stGasoline = stGasoline;
+    }
 
     public String getStationName() {
         return stationName;
@@ -63,20 +95,12 @@ public class StationModel {
         this.stationName = stationName;
     }
 
-    public int getStationPrice() {
+    public double getStationPrice() {
         return stationPrice;
     }
 
-    public void setStationPrice(int stationPrice) {
+    public void setStationPrice(double stationPrice) {
         this.stationPrice = stationPrice;
-    }
-
-    public String getStDistance() {
-        return stDistance;
-    }
-
-    public void setStDistance(String stDistance) {
-        this.stDistance = stDistance;
     }
 
     public String getStationInfo() {

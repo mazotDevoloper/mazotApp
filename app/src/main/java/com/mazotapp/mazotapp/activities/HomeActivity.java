@@ -9,7 +9,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,15 +31,11 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
 
-    String id;
-    UserModel registeredUser;
-
-    DatabaseReference databaseReference;
-    FirebaseDatabase database;
-
     private HomeFragment homeFragment;
     private SettingsFragment settingsFragment;
     private CampaignFragment campaignFragment;
+
+    ImageView imgAdmin_icon;
 
 
     @Override
@@ -45,18 +43,17 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        imgAdmin_icon = findViewById(R.id.imgAdmin_icon);
+
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
-        //id = user.getUid();
-
-        //database = FirebaseDatabase.getInstance();
-        //databaseReference = database.getReference("Users");
-
-        //Toast.makeText(HomeActivity.this, id, Toast.LENGTH_SHORT).show();
-
         mMainNav = findViewById(R.id.main_nav);
         mMainFrame = findViewById(R.id.main_frame);
+
+        if(user.getEmail().equalsIgnoreCase("malabadi39@hotmail.com") || user.getEmail().equalsIgnoreCase("atanurduman@hotmail.com")){
+            imgAdmin_icon.setVisibility(View.VISIBLE);
+        }
 
         homeFragment = new HomeFragment();
         settingsFragment = new SettingsFragment();
@@ -65,6 +62,14 @@ public class HomeActivity extends AppCompatActivity {
         setFragment(homeFragment);
 
         mMainNav.setSelectedItemId(R.id.nav_home);
+
+        imgAdmin_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentAdmin = new Intent(HomeActivity.this,AdminActivity.class);
+                startActivity(intentAdmin);
+            }
+        });
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -107,32 +112,6 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
-
-    /*
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange( DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                    UserModel registeredUser = userSnapshot.getValue(UserModel.class);
-                    //Log.d("lüleburgaz",registeredUser.getName());
-                    Toast.makeText(HomeActivity.this, registeredUser.getName(), Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onCancelled( DatabaseError databaseError) {
-
-            }
-        });
-    }
-    */
 }
 
 

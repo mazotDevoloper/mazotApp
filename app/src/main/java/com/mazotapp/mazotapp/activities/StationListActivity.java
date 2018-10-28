@@ -29,7 +29,6 @@ public class StationListActivity extends AppCompatActivity {
     private ListView lvStations;
     DatabaseReference databaseReference;
     FirebaseDatabase database;
-    String fuelType;
     Boolean boolGasoline, boolDiesel, boolLPG, boolLowPrice, boolDistance, boolToilet;
     List<StationModel> addStation = new ArrayList<StationModel>();
     PrivateAdapter stationAdapter;
@@ -51,8 +50,8 @@ public class StationListActivity extends AppCompatActivity {
         Bundle userChoice = getIntent().getExtras();
 
 
-        // database = FirebaseDatabase.getInstance();
-        // databaseReference = database.getReference().child("Stations");
+         database = FirebaseDatabase.getInstance();
+         databaseReference = database.getReference().child("Stations");
 
 
         //boolean ları bundle la diğer tarafından çekilen yer
@@ -66,29 +65,27 @@ public class StationListActivity extends AppCompatActivity {
 
         lvStations = findViewById(R.id.lvStations);
 
-        fuelType = "";
+        // Filtreleme yeri
 
-        if (boolDiesel) {
-            fuelType += "Dizel";
-        } else if (boolGasoline) {
-            fuelType += "Benzin";
-        } else if (boolLPG) {
-            fuelType += "LPG";
+        if(boolDiesel && boolLowPrice && !boolToilet && !boolDistance ){
+            queryStationList = databaseReference
+                    .orderByChild("stDiesel");
+        }
+        if(boolGasoline && boolLowPrice && !boolToilet && !boolDistance){
+            queryStationList = databaseReference
+                    .orderByChild("stGasoline");
+        }
+        if(boolLPG && boolLowPrice && !boolToilet && !boolDistance){
+            queryStationList = databaseReference
+                    .orderByChild("stLPG");
+        }
+        if(!boolLowPrice && boolToilet && !boolDistance){
+            queryStationList = databaseReference
+                    .orderByChild("stCleanToilet");
         }
 
 
-
-        queryStationList = FirebaseDatabase.getInstance().getReference().child("Stations")
-                .orderByChild("stationPrice");
-
-
-
-
-
-
-
         queryStationList.addListenerForSingleValueEvent(valueEventListener);
-
 
 
         lvStations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,20 +96,18 @@ public class StationListActivity extends AppCompatActivity {
 
                 String infoStation = addStation.get(position).getStationInfo();
                 String infoStName = addStation.get(position).getStationName();
-                int infoStPrice = addStation.get(position).getStationPrice();
-
                 String infoStPhoto = addStation.get(position).getStPhoto();
 
+                double infoStPrice = addStation.get(position).getStationPrice();
                 double infoStPositionX = addStation.get(position).getStPositionX();
                 double infoStPositionY = addStation.get(position).getStPositionY();
-
 
                 Bundle stationInformations = new Bundle();
                 stationInformations.putDouble("infoStPositionX", infoStPositionX);
                 stationInformations.putDouble("infoStPositionY", infoStPositionY);
                 stationInformations.putString("infoStPhoto", infoStPhoto);
                 stationInformations.putString("infoStName", infoStName);
-                stationInformations.putInt("infoStPrice", infoStPrice);
+                stationInformations.putDouble("infoStPrice", infoStPrice);
                 stationInformations.putString("infoStation", infoStation);
 
                 Intent stationInformation = new Intent(StationListActivity.this, InformationStationActivity.class);
@@ -139,15 +134,28 @@ public class StationListActivity extends AppCompatActivity {
                     StationModel value = listSnap.getValue(StationModel.class);
 
                     String stationName = value.getStationName();
-                    String stDistance = value.getStDistance();
-                    int stPrice = value.getStationPrice();
+                    int stCleanToilet = value.getStCleanToilet();
+                    double stPrice = value.getStationPrice();
+                    double stLPG = value.getStLPG();
+                    double stDiesel = value.getStDiesel();
+                    double stGasoline = value.getStGasoline();
                     Double stPositionX = value.getStPositionX();
                     Double stPositionY = value.getStPositionY();
                     String stInfo = value.getStationInfo();
                     String stPhoto = value.getStPhoto();
                     String stLogo = value.getStationLogo();
 
-                    addStation.add(new StationModel(stLogo,stPhoto,stationName,stPrice,stDistance,stInfo,stPositionX,stPositionY));
+                    if(boolDiesel){
+                        stPrice = stDiesel;
+                    }
+                    if(boolGasoline){
+                        stPrice = stGasoline;
+                    }
+                    if(boolLPG){
+                        stPrice = stLPG;
+                    }
+
+                    addStation.add(new StationModel(stLogo,stPhoto,stationName,stCleanToilet,stPrice,stDiesel,stGasoline,stLPG,stInfo,stPositionX,stPositionY));
 
                     stationAdapter.notifyDataSetChanged();
                 }
