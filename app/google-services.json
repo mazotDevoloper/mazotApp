@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "450646345011",
-    "firebase_url": "https://mazotapp-a48f2.firebaseio.com",
-    "project_id": "mazotapp-a48f2",
-    "storage_bucket": "mazotapp-a48f2.appspot.com"
+    "project_number": "850392260301",
+    "firebase_url": "https://mazotapp-7a03d.firebaseio.com",
+    "project_id": "mazotapp-7a03d",
+    "storage_bucket": "mazotapp-7a03d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:450646345011:android:ee00aecf33bc2d6f",
+        "mobilesdk_app_id": "1:850392260301:android:ee00aecf33bc2d6f",
         "android_client_info": {
           "package_name": "com.mazotapp.mazotapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "450646345011-k79uvpb5jnnaa5ddj6d2cbh5drrqj563.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mazotapp.mazotapp",
-            "certificate_hash": "894d9c86c3d808baaa816939e22e0bbaf3cf4358"
-          }
-        },
-        {
-          "client_id": "450646345011-l9ddutjkrdpi55a0qk996s6m2pht1q82.apps.googleusercontent.com",
+          "client_id": "850392260301-6sljdn1eiq74knc10sh1q2ekjpsgp1k2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA0iojXMvc24C3N9sNnzkUIbLmEiq9bVVQ"
+          "current_key": "AIzaSyBroAAKKG0poao2q6Uuh2lW2snjsObwBZ0"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "450646345011-l9ddutjkrdpi55a0qk996s6m2pht1q82.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
     android:layout_height="match_parent">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btnGoFindStationPanel"
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -22,26 +26,35 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/home_security_icon" />
-
-                <TextView
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="@string/homeFragmentT"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/home_security_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="@string/homeFragmentT"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </android.support.v7.widget.CardView>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -54,12 +67,10 @@
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/card_nearStation"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp">
+                    android:layout_marginBottom="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -68,8 +79,10 @@
                         android:weightSum="3">
 
                         <ImageView
-                            android:layout_width="80dp"
+                            android:layout_width="10dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_height="match_parent"
+                            android:id="@+id/imgStNear"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             />
@@ -84,8 +97,9 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Opet Gürcan Petrol" />
+                                android:id="@+id/tvNearName"
+                                android:layout_marginLeft="30dp"
+                                android:text="" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -97,21 +111,21 @@
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
                                     android:padding="3dp"
-                                    android:src="@drawable/distance_icon" />
+                                    android:src="@drawable/carwash_icon" />
 
                                 <ImageView
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
                                     android:padding="3dp"
                                     android:layout_marginStart="10dp"
-                                    android:src="@drawable/wc_icon" />
+                                    android:src="@drawable/market_icon" />
 
                                 <ImageView
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
                                     android:padding="3dp"
                                     android:layout_marginStart="10dp"
-                                    android:src="@drawable/low_price_icon" />
+                                    android:src="@drawable/toilet_icon" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -124,29 +138,28 @@
 
                             <TextView
                                 android:layout_width="wrap_content"
+                                android:id="@+id/tvNearPrice"
+                                android:textStyle="bold"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:padding="3dp"
-                                android:text="0.9km"
+                                android:text=""
                                 android:textAlignment="center"
                                 android:textSize="13sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
+                                android:id="@+id/tvNearDistance"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:textStyle="bold"
                                 android:padding="3dp"
-                                android:text="6.83 TL/L"
+                                android:text=""
                                 android:textAlignment="center"
                                 android:textSize="13sp" />
 
-
                         </LinearLayout>
-
-
                     </LinearLayout>
-
-
                 </android.support.v7.widget.CardView>
             </LinearLayout>
 
@@ -157,313 +170,32 @@
                 android:text="@string/mostUseStations"
                 android:textSize="15sp" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_mostUseStations1"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
+            <ListView
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:weightSum="3">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Shell SHELL Petrol" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:src="@drawable/distance_icon" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:layout_marginStart="10dp"
-                                android:src="@drawable/wc_icon" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:layout_marginStart="10dp"
-                                android:src="@drawable/low_price_icon" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:padding="3dp"
-                            android:text="1.9km"
-                            android:textAlignment="center"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:padding="3dp"
-                            android:text="6.83 TL/L"
-                            android:textAlignment="center"
-                            android:textSize="13sp" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_mostUseStations2"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp">
+                android:id="@+id/lvMostUse"
+                android:layout_height="240dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:weightSum="3">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Petrol Ofisi Şişli ORSAY" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:src="@drawable/distance_icon" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:layout_marginStart="10dp"
-                                android:src="@drawable/wc_icon" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:layout_marginStart="10dp"
-                                android:src="@drawable/low_price_icon" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:padding="3dp"
-                            android:text="2.3km"
-                            android:textAlignment="center"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:padding="3dp"
-                            android:text="6.83 TL/L"
-                            android:textAlignment="center"
-                            android:textSize="13sp" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_mostUseStations3"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:weightSum="3">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="İstanbul Şişli AYTEMİZ" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:src="@drawable/distance_icon" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:layout_marginStart="10dp"
-                                android:src="@drawable/wc_icon" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="3dp"
-                                android:layout_marginStart="10dp"
-                                android:src="@drawable/low_price_icon" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:padding="3dp"
-                            android:text="2.5km"
-                            android:textAlignment="center"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:padding="3dp"
-                            android:text="6.83 TL/L"
-                            android:textAlignment="center"
-                            android:textSize="13sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <Button
-                    android:id="@+id/btnGoFindStation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/oval"
-                    android:text="@string/goFindStationB"
-                    android:textColor="@color/white"
-                    android:textSize="25sp" />
-            </LinearLayout>
-
+            </ListView>
 
         </LinearLayout>
-
     </ScrollView>
 
+    <LinearLayout
+        android:id="@+id/btnGoFindStationPanel"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-
-</LinearLayout>
+        <Button
+            android:id="@+id/btnGoFindStation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_oval"
+            android:text="@string/goFindStationB"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+</RelativeLayout>

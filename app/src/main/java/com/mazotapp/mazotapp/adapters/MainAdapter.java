@@ -65,6 +65,9 @@ public class MainAdapter extends BaseAdapter{
 
         StationModel stationModel = stationLst.get(position);
 
+        fuelPrice = "Fiyat: " + String.valueOf(stationModel.getStationPrice());
+
+        stationDistance.setText("Mesafe: 25.km");
         stationNameT.setText(stationModel.getStationName());
         stationPrice.setText(fuelPrice);
         Picasso.get().load(stationModel.getStationLogo()).into(stationImg);

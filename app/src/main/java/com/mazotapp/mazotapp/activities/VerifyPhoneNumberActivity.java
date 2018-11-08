@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -90,7 +91,6 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            mAuth.getCurrentUser().delete();
         }
 
         @Override

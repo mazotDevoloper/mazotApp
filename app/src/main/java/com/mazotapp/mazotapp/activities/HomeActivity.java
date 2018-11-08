@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         mMainNav = findViewById(R.id.main_nav);
         mMainFrame = findViewById(R.id.main_frame);
 
-        if(user.getEmail().equalsIgnoreCase("malabadi39@hotmail.com") || user.getEmail().equalsIgnoreCase("atanurduman@hotmail.com")){
+        if(user.getEmail().equalsIgnoreCase("bertugabali@hotmail.com") || user.getEmail().equalsIgnoreCase("atanurduman@hotmail.com")){
             imgAdmin_icon.setVisibility(View.VISIBLE);
         }
 

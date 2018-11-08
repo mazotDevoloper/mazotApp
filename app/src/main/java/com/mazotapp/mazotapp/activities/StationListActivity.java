@@ -35,9 +35,6 @@ public class StationListActivity extends AppCompatActivity {
     Query queryStationList;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

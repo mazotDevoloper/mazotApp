@@ -4,14 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:background="@color/backgroundColor"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentTop="true"
-        android:background="@drawable/top_color"
+        android:background="@color/topColor"
         android:orientation="horizontal">
 
         <ImageView
@@ -102,7 +103,7 @@
         <Button
             android:id="@+id/btnOpenGoogleMap"
             android:layout_width="match_parent"
-            android:background="@drawable/oval"
+            android:background="@drawable/button_oval"
             android:text="@string/openGoogleMap"
             android:textColor="@color/white"
             android:textStyle="bold"

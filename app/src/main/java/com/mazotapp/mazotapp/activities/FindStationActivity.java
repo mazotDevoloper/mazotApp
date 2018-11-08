@@ -3,15 +3,27 @@ package com.mazotapp.mazotapp.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.mazotapp.mazotapp.R;
+import com.mazotapp.mazotapp.models.StationModel;
+import com.squareup.picasso.Picasso;
 
 public class FindStationActivity extends AppCompatActivity {
 
@@ -19,9 +31,21 @@ public class FindStationActivity extends AppCompatActivity {
      ImageView backIcon;
      CheckBox cbLowPrice,cbDistance,cbBestToilet;
      RadioGroup rgCarFuel;
-     RadioButton rb;
-     Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet;
+    String stationName,stInfo,stPhoto,stLogo,stMPrice;
+    RadioButton rb;
+    double stPrice,stLPG,stDiesel,stGasoline,stPositionX,stPositionY;
+    TextView tvNearName,tvNearPrice,tvNearDistance;
+    ImageView imgNearLogo;
+    Intent intentInfoSt;
+    int stCleanToilet;
+    CardView cardNear;
+    Bundle stationInformations;
+    Query queryStationList;
 
+    Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet;
+
+    DatabaseReference databaseReference;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +59,23 @@ public class FindStationActivity extends AppCompatActivity {
         boolLPG = false;
         boolToilet =  false;
 
+        cardNear = findViewById(R.id.card_station);
+
+        tvNearDistance = findViewById(R.id.tvNearDistance);
+        tvNearName = findViewById(R.id.tvNearName);
+        tvNearPrice = findViewById(R.id.tvNearPrice);
+
+        imgNearLogo = findViewById(R.id.imgStNear);
+
         btnFindStation = findViewById(R.id.btnFindStation);
+
+        intentInfoSt = new Intent(FindStationActivity.this,InformationStationActivity.class);
+
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("Stations");
+
+        queryStationList = databaseReference;
+        queryStationList.addListenerForSingleValueEvent(nearStationListener);
 
         backIcon = findViewById(R.id.imgBack_icon);
 
@@ -45,10 +85,19 @@ public class FindStationActivity extends AppCompatActivity {
 
         rgCarFuel = findViewById(R.id.rgCarFuel);
 
+        stationInformations = new Bundle();
+
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        cardNear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent(stPositionX,stPositionY,stPhoto,stationName,stInfo);
             }
         });
 
@@ -123,4 +172,55 @@ public class FindStationActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void intent(double infoStPositionX, double infoStPositionY, String infoStPhoto, String infoStName, String infoStation){
+
+        stationInformations.putDouble("infoStPositionX",infoStPositionX);
+        stationInformations.putDouble("infoStPositionY",infoStPositionY);
+        stationInformations.putString("infoStPhoto",infoStPhoto);
+        stationInformations.putString("infoStName",infoStName);
+        stationInformations.putString("infoStation",infoStation);
+
+        intentInfoSt.putExtras(stationInformations);
+
+        startActivity(intentInfoSt);
+    }
+
+    ValueEventListener nearStationListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot listSnap : dataSnapshot.getChildren()) {
+                    StationModel value = listSnap.getValue(StationModel.class);
+
+                    stationName = value.getStationName();
+                    stCleanToilet = value.getStCleanToilet();
+                    stPrice = value.getStationPrice();
+                    stLPG = value.getStLPG();
+                    stDiesel = value.getStDiesel();
+                    stGasoline = value.getStGasoline();
+                    stPositionX = value.getStPositionX();
+                    stPositionY = value.getStPositionY();
+                    stInfo = value.getStationInfo();
+                    stPhoto = value.getStPhoto();
+                    stLogo = value.getStationLogo();
+
+                    stPrice = stGasoline;
+
+                    stMPrice = "Fiyat: " + String.valueOf(stPrice);
+
+                    tvNearPrice.setText(stMPrice);
+                    tvNearName.setText(stationName);
+                    tvNearDistance.setText("Mesafe: 1.5km");
+                    Picasso.get().load(stLogo).into(imgNearLogo);
+
+                }
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
 }

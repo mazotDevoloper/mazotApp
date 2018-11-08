@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                                         } else {
                                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                             startActivity(intent);
-                                            //finish();
                                         }
                                         PD.dismiss();
                                     }
