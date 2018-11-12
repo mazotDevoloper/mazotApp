@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mazotapp.mazotapp.R;
+import com.mazotapp.mazotapp.activities.GPSTracker;
 import com.mazotapp.mazotapp.models.StationModel;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +26,13 @@ public class PrivateAdapter extends BaseAdapter{
     TextView stationNameT,stationPrice,stationDistance,stPositionT;
     ImageView stationImg;
 
-     List<StationModel> stationLst  = new ArrayList<>();
-     String fuelPrice;
+    GPSTracker gps;
+
+    double userLatitude,userLongitude,distanceNumber;
+
+
+    List<StationModel> stationLst  = new ArrayList<>();
+     String fuelPrice,distance;
 
 
     public PrivateAdapter(Activity activity, List<StationModel> stationList){
@@ -56,6 +63,13 @@ public class PrivateAdapter extends BaseAdapter{
 
         View lineVisibility = stationLayoutInflater.inflate(R.layout.station,null);
 
+        gps = new GPSTracker(lineVisibility.getContext());
+
+        if (gps.canGetLocation()) {
+            userLatitude = gps.getLatitude();
+            userLongitude = gps.getLongitude();
+        }
+
 
         stPositionT = lineVisibility.findViewById(R.id.tvPosition);
         stationNameT = lineVisibility.findViewById(R.id.tStationName);
@@ -66,15 +80,47 @@ public class PrivateAdapter extends BaseAdapter{
 
         StationModel stationModel = stationLst.get(position);
 
+        distanceNumber = CalculationByDistance(userLatitude,userLongitude,stationModel.getStPositionX(),stationModel.getStPositionY());
+
+        //burada mesafeyi kısıtlıyorum
+        DecimalFormat precision = new DecimalFormat("0.0");
+
+        distance = "Mesafe: " + precision.format(distanceNumber) + " km";
+
         fuelPrice = "Fiyatı: " + String.valueOf(stationModel.getStationPrice()) ;
 
         stationNameT.setText(stationModel.getStationName());
         stPositionT.setText(String.valueOf(position + 1 ));
         stationPrice.setText(fuelPrice);
         Picasso.get().load(stationModel.getStationLogo()).into(stationImg);
-        //stationDistance.setText(stationModel.getStDistance());
+        stationDistance.setText(distance);
 
 
         return lineVisibility;
+    }
+
+    public double CalculationByDistance(double userLatitude , double userLongitude,double stationLatitude,double stationLongtitude) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = userLatitude;
+        double lat2 = stationLatitude;
+        double lon1 = userLongitude;
+        double lon2 = stationLongtitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        //int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        //int meterInDec = Integer.valueOf(newFormat.format(meter));
+        //Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+        //        + " Meter   " + meterInDec);
+
+        return Radius * c;
     }
 }

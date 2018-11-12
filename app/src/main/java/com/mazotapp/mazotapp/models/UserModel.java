@@ -2,7 +2,7 @@ package com.mazotapp.mazotapp.models;
 
 public class UserModel {
 
-    private String name,surname,phoneNumber,email,password;
+    private String name,surname,phoneNumber,email,password,cityName;
     private int cbLowPrice,cbToilet,cbNear,rdGasoline,rdLPG,rdDiesel;
     Double locationLongitude,locationLatitude;
 
@@ -10,7 +10,7 @@ public class UserModel {
     public UserModel( ) {
     }
 
-    public UserModel(String name, String surname, String phoneNumber, String email, String password, int cbLowPrice, int cbToilet, int cbNear, int rdGasoline, int rdLPG, int rdDiesel, Double locationLongitude,Double locationLatitude) {
+    public UserModel(String name, String surname, String phoneNumber, String email, String password, int cbLowPrice, int cbToilet, int cbNear, int rdGasoline, int rdLPG, int rdDiesel, Double locationLongitude,Double locationLatitude,String cityName) {
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
@@ -24,6 +24,15 @@ public class UserModel {
         this.rdDiesel = rdDiesel;
         this.locationLatitude = locationLatitude;
         this.locationLongitude = locationLongitude;
+        this.cityName = cityName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public Double getLocationLongitude() {
