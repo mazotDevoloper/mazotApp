@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mazotapp.mazotapp.activities.FindStationActivity;
+import com.mazotapp.mazotapp.activities.GPSTracker;
 import com.mazotapp.mazotapp.activities.HomeActivity;
 import com.mazotapp.mazotapp.activities.InformationStationActivity;
 import com.mazotapp.mazotapp.R;
@@ -41,7 +42,7 @@ public class HomeFragment extends Fragment {
 
     Button btnGoFindStation;
     Intent intentInfoSt;
-    String stationName,stInfo,stPhoto,stLogo,stMPrice;
+    String stationName,stInfo,stPhoto,stLogo,stMPrice,nearDistance;
     Bundle stationInformations;
     int stCleanToilet;
     View view;
@@ -51,6 +52,10 @@ public class HomeFragment extends Fragment {
     TextView tvNearName,tvNearPrice,tvNearDistance;
 
     ImageView imgNearLogo;
+
+    GPSTracker gps;
+
+    double userLatitude,userLongitude,distanceNumber;
 
     private ListView lvStMain;
     DatabaseReference databaseReference;
@@ -222,11 +227,25 @@ public class HomeFragment extends Fragment {
 
                     stPrice = stGasoline;
 
+                    gps = new GPSTracker(getActivity());
+
+                    if (gps.canGetLocation()) {
+                        userLatitude = gps.getLatitude();
+                        userLongitude = gps.getLongitude();
+                    }
+
+                    distanceNumber = CalculationByDistance(userLatitude,userLongitude,stPositionX,stPositionY);
+
+                    //burada mesafeyi kısıtlıyorum
+                    DecimalFormat precision = new DecimalFormat("0.0");
+
+                    nearDistance = "Mesafe: " + precision.format(distanceNumber) + " km";
+
                     stMPrice = "Fiyat: " + String.valueOf(stPrice);
 
                     tvNearPrice.setText(stMPrice);
                     tvNearName.setText(stationName);
-                    tvNearDistance.setText("Mesafe: 1.5km");
+                    tvNearDistance.setText(nearDistance);
                     Picasso.get().load(stLogo).into(imgNearLogo);
 
                 }
@@ -239,6 +258,30 @@ public class HomeFragment extends Fragment {
         }
     };
 
+    public double CalculationByDistance(double userLatitude , double userLongitude,double stationLatitude,double stationLongtitude) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = userLatitude;
+        double lat2 = stationLatitude;
+        double lon1 = userLongitude;
+        double lon2 = stationLongtitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        //int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        //int meterInDec = Integer.valueOf(newFormat.format(meter));
+        //Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+        //        + " Meter   " + meterInDec);
+
+        return Radius * c;
+    }
 
 }
 

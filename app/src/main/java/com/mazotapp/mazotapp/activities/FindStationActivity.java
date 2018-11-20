@@ -25,13 +25,15 @@ import com.mazotapp.mazotapp.R;
 import com.mazotapp.mazotapp.models.StationModel;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+
 public class FindStationActivity extends AppCompatActivity {
 
      Button btnFindStation;
      ImageView backIcon;
      CheckBox cbLowPrice,cbDistance,cbBestToilet;
      RadioGroup rgCarFuel;
-    String stationName,stInfo,stPhoto,stLogo,stMPrice;
+    String stationName,stInfo,stPhoto,stLogo,stMPrice,goodStDistance;
     RadioButton rb;
     double stPrice,stLPG,stDiesel,stGasoline,stPositionX,stPositionY;
     TextView tvNearName,tvNearPrice,tvNearDistance;
@@ -39,6 +41,8 @@ public class FindStationActivity extends AppCompatActivity {
     Intent intentInfoSt;
     int stCleanToilet;
     CardView cardNear;
+    GPSTracker gps;
+    double userLatitude,userLongitude,distanceNumber;
     Bundle stationInformations;
     Query queryStationList;
 
@@ -207,11 +211,25 @@ public class FindStationActivity extends AppCompatActivity {
 
                     stPrice = stGasoline;
 
+                    gps = new GPSTracker(FindStationActivity.this);
+
+                    if (gps.canGetLocation()) {
+                        userLatitude = gps.getLatitude();
+                        userLongitude = gps.getLongitude();
+                    }
+
+                    distanceNumber = CalculationByDistance(userLatitude,userLongitude,stPositionX,stPositionY);
+
+                    //burada mesafeyi kısıtlıyorum
+                    DecimalFormat precision = new DecimalFormat("0.0");
+
+                    goodStDistance = "Mesafe: " + precision.format(distanceNumber) + " km";
+
                     stMPrice = "Fiyat: " + String.valueOf(stPrice);
 
                     tvNearPrice.setText(stMPrice);
                     tvNearName.setText(stationName);
-                    tvNearDistance.setText("Mesafe: 1.5km");
+                    tvNearDistance.setText(goodStDistance);
                     Picasso.get().load(stLogo).into(imgNearLogo);
 
                 }
@@ -223,4 +241,31 @@ public class FindStationActivity extends AppCompatActivity {
 
         }
     };
+
+    //mesafe hesaplama fonksiyonu
+
+    public double CalculationByDistance(double userLatitude , double userLongitude,double stationLatitude,double stationLongtitude) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = userLatitude;
+        double lat2 = stationLatitude;
+        double lon1 = userLongitude;
+        double lon2 = stationLongtitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        //int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        //int meterInDec = Integer.valueOf(newFormat.format(meter));
+        //Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+        //        + " Meter   " + meterInDec);
+
+        return Radius * c;
+    }
 }
