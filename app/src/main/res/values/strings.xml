@@ -10,17 +10,17 @@
     <string name="surname">Soyisim</string>
     <string name="verifyPhoneNumberEd">Doğrulama kodu</string>
     <string name="loginT"><u>Giriş yapmak için tıklayınız.</u></string>
-    <string name="registerT"><u>Kayıt olmak için tıklayınız.</u>.</string>
+    <string name="registerT"><u>Kayıt olmak için tıklayınız.</u></string>
     <string name="continueB">Devam et</string>
     <string name="exitB">Çıkış yap</string>
     <string name="findStationB">İstasyonları Listele</string>
     <string name="findStationT">Size En Uygun İstasyonu Bulun</string>
-    <string name="carFuelT">Aracınızın Akaryakıt Türü</string>
+    <string name="carFuelT">Akaryakıt Türünüz</string>
     <string name="fuelGasolineRB">Benzin</string>
     <string name="fuelDieselRB">Dizel</string>
     <string name="fuelLPGrb">LPG</string>
     <string name="searchingServicePointT">Aradığınız Puanı Seçiniz</string>
-    <string name="stationCriteria">İstasyon Kriterleri</string>
+    <string name="stationCriteria">Özellikler</string>
     <string name="lowPriceCB">En Ucuz</string>
     <string name="distanceCB">En Yakın</string>
     <string name="toiletCB">En Temiz WC</string>
@@ -42,6 +42,110 @@
     <string name="feesbackT">Geri bildiriminizi yazın </string>
     <string name="Petrol_Ofisi">Petrol Ofisi </string>
     <string name="ConfirmB">Onayla </string>
+
+
+    <string name="Contract">Kişisel verilerin korunumu kanunu
+
+1.1. 1. MazotApp’in kişisel verileri toplamasının yasal dayanağı nedir?
+
+Kullanıcılarımızın kişisel verilerinin kullanılması konusunda çeşitli kanunlarda düzenlemeler bulunmaktadır. En başta KVKK ile kişisel verilerin korunması esasları belirlenmiştir. 5237 Sayılı Türk Ceza Kanunu hükümleri yoluyla da kişisel verilerin korunması için bazı hallerde cezai yaptırımlar öngörülmüştür.
+
+
+2. MazotApp kişisel verilerin toplanmasında hangi yöntemleri kullanıyor?
+
+Kişisel verileriniz, Genel Müdürlük, Bölge Müdürlükleri, acenteler, brokerler, çağrı merkezi, anlaşmalı sağlık kuruluşları gibi kanallar ile temasa geçen yahut elektronik ortamda işlem yapan kullanıcılarımızın verdikleri veriler, grup sigortası kullanıcılarımızın çalışanları ile ilgili ilettikleri veriler, kullanıcılarımızın rızaları ve mevzuat hükümleri uyarınca işlenmektedir. Uygulamalarda device ID (cihaz no), IDFA VE AAID (Reklam No) değerleri, konum bilgileri, yine benzer ihtiyaçlar sebebiyle, mobil cihazlar tarafından alınarak işlenmektedir. MazotApp ile paylaşılan kişisel verinin doğrudan sigortalı tarafından, açık irade ile paylaşılması esastır. Bununla birlikte MazotApp, başta EPDK, T.C. Enerji ve Tabii Kaynaklar Bakanlığı, Sigorta Bilgi ve Gözetim Merkezi olmak üzere, yasa gereği bilgi alma hakkımız bulunan kamu kurumlarından, akaryakıt firmalarından ve sigortalının hizmet aldığı anlaşmalı kurumlardan kişisel veri temin etme hakkını saklı tutmaktadır.
+
+
+3. MazotApp kişisel verileri hangi amaçlarla kullanıyor?
+
+MazotApp, mevzuatın izin verdiği durumlarda ve ölçüde kişisel bilgilerinizi kaydedebilecek, saklayabilecek, güncelleyebilecek, üçüncü kişilere açıklayabilecek, devredebilecek, sınıflandırabilecek ve işleyebilecektir. Kişisel verileriniz şu amaçlarla kullanılmaktadır: işlem yapanın/yaptıranın kimlik bilgilerini teyit etmek, iletişim için adres ve diğer gerekli bilgileri kaydetmek, akaryakıt dağıtıcılarından özel teklifler alabilmek, otomobil, tır ve motor satıcılarının teklifleri ve banka anlaşmaları yapabilmek ile sigorta sözleşmenizin koşulları veya güncel durumu ile ilgili hususlarda kullanıcılarımız ile iletişime geçmek, sigorta sözleşmenizde gerçekleşen değişiklikler hakkında kullanıcılarımızı bilgilendirebilmek, elektronik (internet / mobil vs.) veya kağıt ortamında işleme dayanak olacak tüm kayıt ve belgeleri düzenlemek, sigorta sözleşmesi uyarınca üstlenilen yükümlülükleri yerine getirebilmek, çalışanlarına grup sigortası yaptıran kuruluşlara çalışanlarının sigorta kullanım bilgilerini iletebilmek, kullanıcılarımıza özel ve alakalı reklam, kampanya ve diğer faydaların sunulması, izin tercihleriniz doğrultusunda her türlü ticari elektronik ve yazılı ileti gönderilebilmesi ve bilgilendirilmesi, elde edilen veriler doğrultusunda kullanıcı segmentasyonu yapmak, anket ve tele satış uygulamaları, veri madenciliği ve diğer istatistiksel analizler, kullanıcı veri kalitesini geliştirmek ve iyileştirmek, kullanıcı yönetimine yönelik sadakat aksiyonları, çapraz satış ve kaybedilen kullanıcıyı tekrar kazanma aksiyonları tasarlamak ve yönetimini gerçekleştirmek ve tarafınızca izin verilmesi durumunda, bilgileriniz aracılığıyla tarafınızla telefon, kısa mesaj, sosyal medya ve mecraları, e-posta, mektup, faks ve otomatik arama makineleri gibi her türlü cihaz aracılığıyla ürün ve hizmetlerimizle ilgili fayda ve satış teklifleri için iletişime geçebilmek, anlaşmalı akaryakıt dağıtıcıları ve markaları, sigorta kuruluşları, tamirhaneleri, eksperler, bankalar, ve diğer anlaşmalı kişilerimiz ve kurumlarımız, acenteler, brokerlar ve diğer çözüm ortaklarımız tarafından kullanıcılarımıza önerilen hizmetlerle ilgili kullanıcılarımızı bilgilendirebilmek, ürün ve hizmetlerimiz ile ilgili kullanıcı şikayet ve önerilerini değerlendirebilmek, KVKK’dan doğan yükümlülüklerimizi yerine getirebilmek ve mevzuattan doğan haklarımızı kullanabilmek.
+
+
+4. MazotApp kişisel verilerinizi nasıl koruyor?
+
+MazotApp ile paylaşılan kişisel veriler, MazotApp gözetimi ve kontrolü altındadır. MazotApp, yürürlükteki ilgili mevzuat hükümleri gereğince bilginin gizliliğinin ve bütünlüğünün korunması amacıyla gerekli organizasyonu kurmak ve teknik önlemleri almak ve uyarlamak konusunda veri sorumlusu sıfatıyla sorumluluğu üstlenmiştir. Bu konudaki yükümlülüğümüzün bilincinde olarak veri gizliliğini konu alan uluslararası ve ulusal teknik standartlara uygun surette veri işleme politikalarımızı her zaman güncellediğimizi bilginize sunarız.
+
+
+5. MazotApp kişisel verilerinizi paylaşıyor mu?
+
+Kullanıcılarımıza ait kişisel verilerin üçüncü kişiler ile paylaşımı, kullanıcıların izni çerçevesinde gerçekleşmekte ve kural olarak kullanıcımızın onayı olmaksızın kişisel verileri üçüncü kişilere aktarılmamaktadır. Bununla birlikte, yasal yükümlülüklerimiz nedeniyle ve bunlarla sınırlı olmak üzere mahkemeler ve diğer kamu kurumları ile kişisel veriler paylaşılmaktadır. Ayrıca, taahhüt ettiğimiz hizmetleri sağlayabilmek ve verilen hizmetlerin kalite kontrolünü yapabilmek için anlaşmalı üçüncü kişilere kişisel veri aktarımı yapılmaktadır. Üçüncü kişilere veri aktarımı sırasında hak ihlallerini önlemek için gerekli teknik ve hukuki önlemler alınmaktadır. Bununla birlikte, kişisel verileri alan üçüncü kişinin veri koruma politikalarından dolayı ve üçüncü kişinin sorumluluğundaki risk alanında meydana gelen ihlallerden BenzinLitre sorumlu değildir.
+
+
+6. MazotApp kişisel verilerinizi yurtdışındaki 3. Kişilerle paylaşıyor mu?
+
+Kişisel verileriniz MazotApp platformları (websitesi ve uygulamalar) ve/veya bağlı kuruluşlarını, iştiraklerini, ortak teşebbüslerini ve bunların tüm şubeleri ile ofislerini, otomotiv firmaları ve sigortacılık faaliyetlerini yürütebilmesi için işbirliği yaptığımız program ortağı kurum, kuruluşlarla, yurtiçi ve yurtdışındaki reasürans şirketleriyle, verilerin bulut ortamında saklanması hizmeti aldığımız yurtiçi/yurtdışı kişi ve kurumlarla, kullanıcılarımıza gönderdiğimiz ticari elektronik iletilerin gönderilmesi konusunda anlaşmalı olduğumuz yurtiçi/yurtdışındaki kuruluşlarla, Bankalararası Kart Merkeziyle, anlaşmalı olduğumuz bankalarla ve sizlere daha iyi hizmet sunabilmek ve kullanıcı memnuniyetini sağlayabilmek için çeşitli pazarlama faaliyetleri kapsamında anket şirketleriyle ve yurtiçi/yurtdışı diğer üçüncü kişilere ilgili iş ortaklarımızla paylaşılabilmektedir.
+
+
+7. Kişisel Verilerin Korunması Kanunu’ndan doğan haklarınız nelerdir?
+
+KVKK uyarınca kişisel verilerinizin; a) işlenip işlenmediğini öğrenme, b) işlenmişse bilgi talep etme, c) işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, d) yurt içinde / yurt dışında aktarıldığı 3. kişileri bilme, e) eksik / yanlış işlenmişse düzeltilmesini isteme, f) KVKK’nın 7. maddesinde öngörülen şartlar çerçevesinde silinmesini / yok edilmesini isteme, g) aktarıldığı 3. kişilere yukarıda sayılan (d) ve (e) bentleri uyarınca yapılan işlemlerin bildirilmesini isteme, h) münhasıran otomatik sistemler ile analiz edilmesi nedeniyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme, i) KVKK’ya aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme haklarına sahip olduğunuzu hatırlatmak isteriz.
+
+
+8. Kişisel verilerle ilgili mevzuat değişikliklerinden nasıl haberdar olabilirim?
+
+KVKK uyarınca sahip olduğunuz haklar BenzinLitre’nin yükümlülükleridir. Kişisel verilerinizi bu bilinçle ve mevzuatın gerektirdiği ölçüde işlediğimizi, yasal değişikliklerin olması halinde sayfamızda yer alan bu bilgileri yeni mevzuata uygun güncelleyeceğimizi, yapılan güncellemeleri de bu sayfa üzerinden her zaman kolaylıkla takip edebileceğinizi size bildirmek isteriz.
+
+
+9. Verinin güncel ve doğru tutulduğundan nasıl emin olabilirim?
+
+KVKK’nın 4. maddesi uyarınca MazotApp’in kişisel verilerinizi doğru ve güncel olarak tutma yükümlülüğü bulunmaktadır. Bu kapsamda MazotApp’in yürürlükteki mevzuattan doğan yükümlülüklerini yerine getirebilmesi için kullanıcılarımızın MazotApp’le doğru ve güncel verilerini paylaşması gerekmektedir. Verilerinizin herhangi bir surette değişikliğe uğraması halinde aşağıda belirtilen iletişim kanallarından bizimle iletişime geçerek verilerinizi güncellemenizi rica ederiz.
+
+
+
+Kullanıcılarımızın kişisel verilerinin kullanılması konusunda çeşitli kanunlarda düzenlemeler bulunmaktadır. En başta KVKK ile kişisel verilerin korunması esasları belirlenmiştir. 5237 Sayılı Türk Ceza Kanunu hükümleri yoluyla da kişisel verilerin korunması için bazı hallerde cezai yaptırımlar öngörülmüştür. Diğer yandan, Sigorta Acenteleri Yönetmeliği, Sigorta Bilgi ve Gözetim Merkezi Yönetmeliği ve sigortacılık alanındaki diğer yasal düzenlemeler, sigortacılık faaliyetlerinin yürütülmesi ile için kişisel verilerin toplanmasına ve kullanılmasına izin veren bazı düzenlemeler getirmektedir.
+
+
+
+Kullanıcı Sözleşmesi
+
+
+MazotApp “UYGULAMA”, MazotApp’i cihazlarından indirip kullananlar ise “KULLANICI” olarak anılacaktır.
+
+
+MazotApp, UYGULAMASI’nı kullanan KULLANICI’ların kendinleri için en iyi, en uygun; yakıt tipi, benzin istasyonu gibi seçenekler ile mobil uygulama üzerinden bulunmasını sağlayan bir uygulamadır.
+
+
+UYGULAMA’yı kullanmak isteyen KULLANICI’lar, , Android uyumlu cep telefonu veya tablet’e UYGULAMA’yı indirip, sistem üzerinden kayıt için gerekli olan bölümleri doldurup uygulamayı kullanmaya başlayabilir.
+
+
+KULLANICI, kayıt esnasında verdiği tüm bilgilerin daima ve her bakımdan doğru, eksiksiz, gerçeğe uygun ve güncel olduğunu kabul ve taahhüt eder. Bu bilgilerin kapsamı MazotApp tarafından belirlenir ve gerektiği halde değiştirilebilir, kapsamı genişletilebilir; herhangi bir gerekçe göstermeden üyelik başvurusu reddedebilir.
+
+
+
+UYGULAMA dahilinde yer alan tesis özellikleri değişmiş olabilir. MazotApp istasyonlarının Tesis özelliklerinden MazotApp uygulaması sorumlu değildir. KULLANICI, bilgilerin güncelliği konusunda herhangi bir dava, şikâyet ve talepte bulunmayacağını şimdiden kabul, beyan ve taahhüt etmektedir. Her KULLANICI, istasyonda bulunan özellikleri kontrol etmek, önceden teyit edip gitme sorumluluğundadır. İstasyonun lisans iptali, transferi gerçekleşmiş olabilir. Konum bilgisi hatalı şekilde güncellenmiş olabilir. Bu nedenler sebebiyle, çeşitli risk ve belirsizlikler içerirler.
+
+
+UYGULAMA’nin sunduğu hizmetten yararlanan KULLANICI, UYGULAMA’yı hukuka ve amacına uygun şekilde kullanmayı ve UYGULAMA dâhilinde yaptığı her işlem ve eylemdeki hukuki sorumluluğunun kendisine ait olduğunu kabul eder. KULLANICI’nın UYGULAMA aracılığıyla ve/veya dâhilinde, işbu koşullara ve hukuka aykırı olarak gerçekleştirdiği herhangi bir işlem, eylem ve/veya faaliyetleri nedeniyle MazotApp doğrudan veya dolaylı olarak hiçbir şekilde sorumlu tutulamaz.
+
+
+KULLANICI, UYGULAMA dâhilinde bulunan, MazotApp ve/veya başka bir üçüncü şahsın ayni veya şahsi haklarına, malvarlığına tecavüz teşkil edecek nitelikteki resimleri, metinleri, görsel ve işitsel imgeleri, video kliplerini, dosyaları, veri tabanlarını, katalogları ve listeleri paylaşmayacağını ve bunları çoğaltmayacağını, kopyalamayacağını, dağıtmayacağını, işlemeyeceğini kabul eder.
+
+
+KULLANICI’nın işbu belirtilen koşullara aykırı davrandığının tespiti halinde, MazotApp KULLANICI’nın üyeliğini askıya alma ve/veya UYGULAMA’dan tamamen çıkarma hakkını saklı tutar.
+
+
+KULLANICI, UYGULAMA’yı sağlıklı olarak kullanabilmesi için bir mobil operatör ya da internet hizmet sağlayıcı aracılığıyla bir mobil hizmet şebekesine bağlı olmak zorundadır. Mobil ya da internet bağlantı hizmetlerinin bedeli YOLCU’ya ait olacak, ayrıca bağlantı sorunları neticesinde meydana gelebilecek gecikme, hizmet aksaması ve sair durumlar kaynaklı zararlardan BenzinLitre’nin herhangi bir sorumluluğu olmayacaktır.
+
+
+UYGULAMA’nın tasarım, metin, imge, html kodu ve diğer kodlar da dâhil ve fakat bunlarla sınırlı olmamak kaydıyla, tüm unsurları (bundan böyle “MazotApp’in telif haklarına tabi çalışmalar” olarak anılacaktır) MazotApp’e aittir. KULLANICI, MazotApp’ten aldığı hizmetleri, UYGULAMA ve MazotApp’e ait bilgileri ve MazotApp’in telif haklarına tabi çalışmalarını ticari amaçla kullanamaz. KULLANICI, √’nin izni olmaksızın, MazotApp’in telif haklarına tabi çalışmalarını çoğaltamaz, dağıtamaz veya bunlardan türemiş çalışmalar yapamaz veya hazırlayamaz.
+
+
+MazotApp’in UYGULAMA aracılığı ile verdiği hizmetlerini, UYGULAMA ve MazotApp’e ait bilgileri ve MazotApp’in telif haklarına tabi çalışmaları, MazotApp ve/veya UYGULAMA vasıtasıyla sahip olduğu her tür maddi ve fikri mülkiyet hakları da dâhil tüm malvarlığı, ayni ve şahsi hakları, ticari bilgi ve know-how’a yönelik tüm hakları saklıdır.
+
+
+MazotApp, tamamen kendi takdirine bağlı ve tek taraflı olarak, sözleşmeyi, uygun göreceği herhangi bir zamanda, UYGULAMA üzerinden ilan ederek değiştirebilir. İşbu Koşulların değişen hükümleri, ilan edildikleri tarihte veya sonrasında, KULLANICI tarafından UYGULAMA üzerinden on-line kabul edilmesi ya da hizmetten faydanılmaya devam edilmesi ile geçerlilik kazanacak, geri kalan hükümler aynen yürürlükte kalarak hüküm ve sonuçlarını doğurmaya devam edecektir.
+
+
+Hukuken mücbir sebep sayılan tüm durumlarda MazotApp, işbu Koşullar ile belirlenen edimlerinden herhangi birini geç veya eksik ifa etme veya ifa etmeme nedeniyle yükümlü değildir. Bu ve bunun gibi durumlar, MazotApp için, gecikme, eksik ifa etme veya ifa etmeme veya temerrüt addedilmeyecek veya bu durumlar için MazotApp’ten herhangi bir nam altında tazminat talep edilemeyecektir. “Mücbir sebep” terimi iletişim sorunları, altyapı ve internet arızaları, elektrik kesintisi, siber saldırılar ve kötü hava koşulları da dâhil ve fakat bunlarla sınırlı olmamak kaydıyla; ilgili tarafın makul kontrolü haricinde ve MazotApp’in gerekli özeni göstermesine rağmen önleyemediği, kaçınılamayacak olaylar olarak yorumlanacaktır.
+
+
+İşbu Sözleşme KULLANICI’nın üyeliği sona erinceye kadar yürürlükte kalacak ve UYGULAMA ile KULLANICI arası hüküm ve sonuçlarını doğurmaya devam edecektir.
+
+
+İşbu Sözleşme MazotApp tarafından UYGULAMA üzerinde ilan edildiği tarihte yürürlük kazanır. KULLANICI işbu sözleşme hükümlerini, UYGULAMA üzerinden üyelik esnasında kabul etmekle ve UYGULAMA’yı kullanmakla kabul etmiş olmaktadırlar. MazotApp, dilediği zaman iş bu sözleşme hükümlerinde değişikliğe gidebilir ve değişiklikler versiyon numarası ve değişiklik tarihi belirtilerek www.mazotapp.com üzerinde yayınlandığı tarihte herhangi bir bildirim ve/veya kabule bağlı kalmaksızın doğrudan yürürlüğe girer.
+
+
+İşbu Sözleşme; KULLANICI tarafından sanal ortamda onaylanmak suretiyle, onaylandığı tarihte derhal yürürlüğe girecek ve UYGULAMA ya da KULLANICI’dan birinin sona erdirme iradesinin karşı tarafa bildirildiği günden itibaren 1 iş günü sonrasına kadar geçerli olacaktır. Tarafların fesih tarihine karar kesinleşmiş hak ve alacakları saklı olacaktır. Bizim web sitemize ulaşabilmek için girdiğiniz başka bir web sitesinin veya bizim web sitemizden girdiğiniz başka bir web sitesinin içeriğinden MazotAPP sorumlu olmayacaktır.  </string>
 
 
 </resources>

@@ -3,29 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mazotbackground"
     android:gravity="center"
     android:orientation="vertical">
 
 
     <ImageView
         android:layout_width="205dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/mazoticon"
+        android:src="@drawable/mazot_logo_top"
         android:layout_height="75dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="#000000"
+        android:text="Sizin için en iyi benzin istasyonunu bulur"
+        android:gravity="center"
+        android:layout_height="30dp" />
+
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:paddingRight="80dp"
         android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/etName"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
             android:layout_height="45dp"
-            android:padding="5dp"
-            android:background="@drawable/edit_text_oval_top"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_oval"
             android:hint="@string/name"
             android:inputType="text"
             android:maxLines="1"
@@ -33,10 +39,12 @@
 
         <EditText
             android:id="@+id/etSurname"
-            android:layout_width="match_parent"
-            android:background="@drawable/edit_text_oval_middle"
+            android:layout_width="300dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/edit_text_oval"
             android:layout_height="45dp"
-            android:padding="5dp"
+            android:padding="10dp"
             android:hint="@string/surname"
             android:inputType="text"
             android:maxLines="1"
@@ -44,10 +52,12 @@
 
         <EditText
             android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:background="@drawable/edit_text_oval_middle"
+            android:layout_width="300dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/edit_text_oval"
             android:layout_height="45dp"
-            android:padding="5dp"
+            android:padding="10dp"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -55,10 +65,12 @@
 
         <EditText
             android:id="@+id/etPassword"
-            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
             android:layout_height="45dp"
-            android:background="@drawable/edit_text_oval_middle"
-            android:padding="5dp"
+            android:background="@drawable/edit_text_oval"
+            android:padding="10dp"
             android:focusableInTouchMode="true"
             android:hint="@string/password"
             android:imeOptions="actionUnspecified"
@@ -68,15 +80,35 @@
 
         <EditText
             android:id="@+id/etMobileNumber"
-            android:layout_width="match_parent"
-            android:padding="5dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:padding="10dp"
             android:layout_height="45dp"
-            android:background="@drawable/edit_text_oval_bottom"
+            android:background="@drawable/edit_text_oval"
             android:focusableInTouchMode="true"
             android:hint="@string/mobilNumber"
             android:imeOptions="actionUnspecified"
             android:inputType="phone"
             android:singleLine="true" />
+
+        <CheckBox
+            android:layout_width="300dp"
+            android:id="@+id/cbContract"
+            android:text="Gizlilik sözleşmesive  kişisel verilerin korunma kanunu okudum onaylıyorum."
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:id="@+id/contractReadT"
+            android:layout_marginTop="10dp"
+            android:textColor="#0000FF"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:text="Gizlilik sözleşmesini incele."
+            android:layout_height="20dp" />
 
 
     </LinearLayout>

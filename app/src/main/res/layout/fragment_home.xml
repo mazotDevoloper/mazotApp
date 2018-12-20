@@ -6,55 +6,16 @@
     android:background="@color/backgroundColor"
     android:layout_height="match_parent">
 
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/btnGoFindStationPanel"
-        android:layout_height="wrap_content">
-
         <LinearLayout
-            android:layout_marginTop="30dp"
+            android:id="@+id/panelNear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/home_security_icon" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="60dp"
-                        android:layout_marginEnd="30dp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="@string/homeFragmentT"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -64,122 +25,143 @@
                     android:text="@string/nearStation"
                     android:textSize="15sp" />
 
-                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                <android.support.v7.widget.CardView
                     android:id="@+id/card_nearStation"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp">
+                    android:layout_height="60dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:weightSum="3">
+                        android:layout_gravity="center">
 
                         <ImageView
-                            android:layout_width="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="40dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_height="40dp"
                             android:id="@+id/imgStNear"
                             android:layout_gravity="center"
-                            android:layout_weight="1"
                             />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="30dp"
                                 android:id="@+id/tvNearName"
-                                android:layout_marginLeft="30dp"
                                 android:text="" />
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
                                 android:orientation="horizontal">
 
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:padding="3dp"
-                                    android:src="@drawable/carwash_icon" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:layout_height="30dp">
 
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:padding="3dp"
-                                    android:layout_marginStart="10dp"
-                                    android:src="@drawable/market_icon" />
+                                    <ImageView
+                                        android:visibility="gone"
+                                        android:id="@+id/imgCarwash"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:padding="3dp"
+                                        android:src="@drawable/carwash_icon" />
 
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:padding="3dp"
-                                    android:layout_marginStart="10dp"
-                                    android:src="@drawable/toilet_icon" />
-                            </LinearLayout>
-                        </LinearLayout>
+                                    <ImageView
+                                        android:visibility="gone"
+                                        android:id="@+id/imgMarket"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:padding="3dp"
+                                        android:layout_marginStart="10dp"
+                                        android:src="@drawable/market_icon" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                                    <ImageView
+                                        android:visibility="gone"
+                                        android:id="@+id/imgWc"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:padding="3dp"
+                                        android:layout_marginStart="10dp"
+                                        android:src="@drawable/toilet_icon" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:id="@+id/tvNearPrice"
-                                android:textStyle="bold"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:padding="3dp"
-                                android:text=""
-                                android:textAlignment="center"
-                                android:textSize="13sp" />
+                                    <ImageView
+                                        android:visibility="gone"
+                                        android:id="@+id/imgCafe"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:padding="3dp"
+                                        android:layout_marginStart="10dp"
+                                        android:src="@drawable/cafe_icon" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:id="@+id/tvNearDistance"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textStyle="bold"
-                                android:padding="3dp"
-                                android:text=""
-                                android:textAlignment="center"
-                                android:textSize="13sp" />
+                                    <ImageView
+                                        android:visibility="gone"
+                                        android:id="@+id/imgOil"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:padding="3dp"
+                                        android:layout_marginStart="10dp"
+                                        android:src="@drawable/oil_icon" />
 
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_marginEnd="40dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tvNearDistance"
+                                        android:textStyle="bold"
+                                        android:padding="3dp"
+                                        android:text=""
+                                        android:textSize="13sp" />
+
+                                    <ImageView
+                                        android:layout_marginStart="10dp"
+                                        android:layout_width="20dp"
+                                        android:src="@drawable/distance_icon"
+                                        android:layout_height="20dp" />
+
+                                </LinearLayout>
+                            </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/mostUseStations"
-                android:textSize="15sp" />
-
-            <ListView
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:id="@+id/lvMostUse"
-                android:layout_height="240dp">
-
-            </ListView>
-
         </LinearLayout>
-    </ScrollView>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/panelNear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvList"
+        android:layout_marginStart="10dp"
+        android:text="Sık Kullanılanlar"
+        android:textSize="15sp" />
+
+    <ListView
+        android:layout_below="@id/tvList"
+        android:layout_above="@+id/btnGoFindStationPanel"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:id="@+id/lvMostUse"
+        android:layout_height="match_parent">
+
+    </ListView>
 
     <LinearLayout
         android:id="@+id/btnGoFindStationPanel"
@@ -187,7 +169,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="10dp">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/AlertT"
+            android:layout_width="match_parent"
+            android:text=""
+            android:textAlignment="center"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnGoFindStation"

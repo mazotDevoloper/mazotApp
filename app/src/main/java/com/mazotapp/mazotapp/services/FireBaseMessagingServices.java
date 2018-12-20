@@ -43,7 +43,7 @@ public class FireBaseMessagingServices extends FirebaseMessagingService {
 
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.mazoticon)
+                .setSmallIcon(R.drawable.mazot_logo_top)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setAutoCancel(true)

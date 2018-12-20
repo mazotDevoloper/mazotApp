@@ -10,9 +10,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.mazotapp.mazotapp.R;
+import com.mazotapp.mazotapp.models.StationModel;
+import com.mazotapp.mazotapp.models.UserModel;
 
 public class FeedbackActivity extends AppCompatActivity {
 
@@ -20,7 +26,11 @@ public class FeedbackActivity extends AppCompatActivity {
     EditText etEmail,etMessage;
     Button btnFeedback;
     ImageView backIcon;
-    String id;
+    String id,email;
+
+
+    GPSTracker gps;
+
     DatabaseReference databaseReference;
 
     @Override
@@ -33,7 +43,13 @@ public class FeedbackActivity extends AppCompatActivity {
 
         btnFeedback = findViewById(R.id.btnFeedback);
 
+
         backIcon = findViewById(R.id.imgBack_icon);
+
+
+        email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+        etEmail.setText(email);
 
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,19 +62,26 @@ public class FeedbackActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                database = FirebaseDatabase.getInstance();
-                databaseReference = database.getReference("Feedbacks");
+                gps = new GPSTracker(FeedbackActivity.this);
 
-                id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                if(gps.isNetworkEnabled){
+                    database = FirebaseDatabase.getInstance();
+                    databaseReference = database.getReference("Feedbacks");
+
+                    id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                    DatabaseReference referenceYeni = databaseReference.child(id);
+
+                    referenceYeni.child("Email").setValue(etEmail.getText().toString());
+                    referenceYeni.child("Message").setValue(etMessage.getText().toString());
+                    Toast.makeText(FeedbackActivity.this,"Geri bildiriminiz için teşekkür ederiz", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(FeedbackActivity.this,HomeActivity.class));
+                    finish();
+                }else{
+                    Toast.makeText(FeedbackActivity.this, "Lütfen internet bağlantınızı kontrol edin", Toast.LENGTH_SHORT).show();
+                }
 
 
-                DatabaseReference referenceYeni = databaseReference.child(id);
-
-                referenceYeni.child("Email").setValue(etEmail.getText().toString());
-                referenceYeni.child("Message").setValue(etMessage.getText().toString());
-                Toast.makeText(FeedbackActivity.this,"Geri bildiriminiz için teşekkür ederiz", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(FeedbackActivity.this,HomeActivity.class));
-                finish();
             }
         });
     }

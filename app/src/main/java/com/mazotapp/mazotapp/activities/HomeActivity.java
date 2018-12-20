@@ -1,7 +1,11 @@
 package com.mazotapp.mazotapp.activities;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -31,29 +35,24 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
 
+    ImageView restartIcon;
+
     private HomeFragment homeFragment;
     private SettingsFragment settingsFragment;
     private CampaignFragment campaignFragment;
-
-    ImageView imgAdmin_icon;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        imgAdmin_icon = findViewById(R.id.imgAdmin_icon);
-
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
+        restartIcon = findViewById(R.id.restart_icon);
+
         mMainNav = findViewById(R.id.main_nav);
         mMainFrame = findViewById(R.id.main_frame);
-
-        if(user.getEmail().equalsIgnoreCase("bertugabali@hotmail.com") || user.getEmail().equalsIgnoreCase("atanurduman@hotmail.com")){
-            imgAdmin_icon.setVisibility(View.VISIBLE);
-        }
 
         homeFragment = new HomeFragment();
         settingsFragment = new SettingsFragment();
@@ -63,11 +62,15 @@ public class HomeActivity extends AppCompatActivity {
 
         mMainNav.setSelectedItemId(R.id.nav_home);
 
-        imgAdmin_icon.setOnClickListener(new View.OnClickListener() {
+        restartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentAdmin = new Intent(HomeActivity.this,AdminActivity.class);
-                startActivity(intentAdmin);
+
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+                fragmentTransaction.detach(homeFragment);
+                fragmentTransaction.attach(homeFragment);
+                fragmentTransaction.commit();
             }
         });
 
@@ -77,14 +80,17 @@ public class HomeActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home:
                         setFragment(homeFragment);
+                        restartIcon.setVisibility(View.VISIBLE);
                         return true;
 
                     case R.id.nav_campaign:
                         setFragment(campaignFragment);
+                        restartIcon.setVisibility(View.INVISIBLE);
                         return true;
 
                     case R.id.nav_settings:
                         setFragment(settingsFragment);
+                        restartIcon.setVisibility(View.INVISIBLE);
                         return true;
 
                     default:
@@ -94,6 +100,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         if (auth.getCurrentUser() == null) {

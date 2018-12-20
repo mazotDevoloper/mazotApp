@@ -17,11 +17,12 @@ import com.mazotapp.mazotapp.activities.FeedbackActivity;
 import com.mazotapp.mazotapp.activities.FindStationActivity;
 import com.mazotapp.mazotapp.activities.LoginActivity;
 import com.mazotapp.mazotapp.R;
+import com.mazotapp.mazotapp.activities.RegisterActivity;
 
 
 public class SettingsFragment extends Fragment {
 
-    Button btnLogOut,btnShareApp,btnFeedback,btnCallServices;
+    Button btnLogOut,btnShareApp,btnFeedback;
     FirebaseAuth auth;
     FirebaseUser user;
     View view;
@@ -40,17 +41,6 @@ public class SettingsFragment extends Fragment {
         btnLogOut = view.findViewById(R.id.btnLogOut);
         btnShareApp = view.findViewById(R.id.btnShareApp);
         btnFeedback = view.findViewById(R.id.btnFeedback);
-        btnCallServices =view.findViewById(R.id.btnCallServices);
-
-        btnCallServices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String phoneNumber = "+905393819792";
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
-
-            }
-        });
 
         btnFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +55,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "http://mazotapp.com");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.mazotapp.mazotapp&hl=tr");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }
@@ -77,8 +67,8 @@ public class SettingsFragment extends Fragment {
                 auth = FirebaseAuth.getInstance();
                 user = auth.getCurrentUser();
                 auth.signOut();
-                Intent intentLogin = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intentLogin);
+                Intent intentRegister = new Intent(getActivity(), RegisterActivity.class);
+                startActivity(intentRegister);
             }
         });
 

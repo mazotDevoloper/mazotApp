@@ -29,25 +29,17 @@ import java.text.DecimalFormat;
 
 public class FindStationActivity extends AppCompatActivity {
 
-     Button btnFindStation;
-     ImageView backIcon;
-     CheckBox cbLowPrice,cbDistance,cbBestToilet;
-     RadioGroup rgCarFuel;
-    String stationName,stInfo,stPhoto,stLogo,stMPrice,goodStDistance;
-    RadioButton rb;
-    double stPrice,stLPG,stDiesel,stGasoline,stPositionX,stPositionY;
-    TextView tvNearName,tvNearPrice,tvNearDistance;
+    Button btnFindStation;
+    ImageView backIcon;
+    RadioGroup rgCarFuel,rgBrands;
+    RadioButton rbFuel,rbBrands;
+    TextView tvNearName,tvNearDistance;
     ImageView imgNearLogo;
     Intent intentInfoSt;
-    int stCleanToilet;
-    CardView cardNear;
-    GPSTracker gps;
-    double userLatitude,userLongitude,distanceNumber;
-    Bundle stationInformations;
-    Query queryStationList;
 
-    Boolean boolGasoline,boolDiesel,boolLPG,boolLowPrice,boolDistance,boolToilet;
+    Boolean boolGasoline,boolDiesel,boolLPG,boolTotal,boolOpet,boolPO,boolShell,boolTP,boolBP,bool24Hour,boolMarket,boolCafe,boolWc,boolOil,boolCarwash,boolMescit,boolMigros,boolTire,boolATM,boolFood,boolRedBull;
 
+    CheckBox cbMarket,cbWc,cbOil,cbCafe,cbCarwash,cb24Hour,cbMigros,cbTire,cbMescit,cbATM,cbFood,cbRedBull;
     DatabaseReference databaseReference;
     FirebaseDatabase database;
 
@@ -57,17 +49,44 @@ public class FindStationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_find_station);
 
         boolDiesel = false;
-        boolDistance = false;
         boolGasoline = false;
-        boolLowPrice = false;
         boolLPG = false;
-        boolToilet =  false;
 
-        cardNear = findViewById(R.id.card_station);
+        bool24Hour = false;
+        boolCafe = false;
+        boolCarwash = false;
+        boolMarket = false;
+        boolOil = false;
+        boolWc = false;
+        boolTire = false;
+        boolMigros = false;
+        boolMescit = false;
+        boolATM = false;
+        boolRedBull = false;
+        boolFood = false;
+
+        boolTP = false;
+        boolBP = false;
+        boolOpet = false;
+        boolShell = false;
+        boolTotal = false;
+        boolPO = false;
+
+        cb24Hour = findViewById(R.id.cb24Hour);
+        cbCafe = findViewById(R.id.cbCafe);
+        cbCarwash = findViewById(R.id.cbCarWash);
+        cbOil = findViewById(R.id.cbOil);
+        cbMarket = findViewById(R.id.cbMarket);
+        cbWc = findViewById(R.id.cbWc);
+        cbMescit = findViewById(R.id.cbMescit);
+        cbATM = findViewById(R.id.cbATM);
+        cbMigros =findViewById(R.id.cbMigros);
+        cbTire = findViewById(R.id.cbTire);
+        cbFood = findViewById(R.id.cbFood);
+        cbRedBull = findViewById(R.id.cbRedBull);
 
         tvNearDistance = findViewById(R.id.tvNearDistance);
         tvNearName = findViewById(R.id.tvNearName);
-        tvNearPrice = findViewById(R.id.tvNearPrice);
 
         imgNearLogo = findViewById(R.id.imgStNear);
 
@@ -78,18 +97,11 @@ public class FindStationActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference().child("Stations");
 
-        queryStationList = databaseReference;
-        queryStationList.addListenerForSingleValueEvent(nearStationListener);
-
         backIcon = findViewById(R.id.imgBack_icon);
 
-        cbBestToilet = findViewById(R.id.cbBestToilet);
-        cbDistance = findViewById(R.id.cbDistance);
-        cbLowPrice = findViewById(R.id.cbLowPrice);
+        rgBrands = findViewById(R.id.rgBrands);
 
         rgCarFuel = findViewById(R.id.rgCarFuel);
-
-        stationInformations = new Bundle();
 
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,174 +110,168 @@ public class FindStationActivity extends AppCompatActivity {
             }
         });
 
-        cardNear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent(stPositionX,stPositionY,stPhoto,stationName,stInfo);
-            }
-        });
-
         btnFindStation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                int radioButtonId = rgCarFuel.getCheckedRadioButtonId();
+                int radioButtonIdBrands = rgBrands.getCheckedRadioButtonId();
+                int radioButtonIdFuel = rgCarFuel.getCheckedRadioButtonId();
 
-                rb = findViewById(radioButtonId);
+                rbBrands = findViewById(radioButtonIdBrands);
+                rbFuel = findViewById(radioButtonIdFuel);
 
-                if(rb == null){
+                if(rbFuel == null){
                     Toast.makeText(FindStationActivity.this, "Aracınızın akaryakıt türünü boş bırakamazsınız!", Toast.LENGTH_SHORT).show();
                 }else{
-                    if( cbBestToilet.isChecked() || cbDistance.isChecked() || cbLowPrice.isChecked()){
 
-                         //Akaryakıt türlerinin kontrolü
+                    //Marka türlerinin kontrolü
 
-                        if(rb.getText().equals("Dizel")){
-                            boolDiesel = true;
+                    if(rbBrands != null){
+                        if(rbBrands.getId() == findViewById(R.id.total).getId()){
+                            boolTotal = true;
                         }else{
-                            boolDiesel = false;
+                            boolTotal = false;
                         }
-                        if(rb.getText().equals("LPG")){
-                            boolLPG = true;
+                        if(rbBrands.getId() == findViewById(R.id.opet).getId()){
+                            boolOpet = true;
                         }else{
-                            boolLPG = false;
+                            boolOpet = false;
                         }
-                        if(rb.getText().equals("Benzin")){
-                            boolGasoline = true;
+                        if(rbBrands.getId() == findViewById(R.id.shell).getId()){
+                            boolShell = true;
                         }else{
-                            boolGasoline = false;
+                            boolShell = false;
                         }
-
-                        //İstasyon kriterlerinin kontrolü
-
-                        if(cbLowPrice.isChecked()){
-                            boolLowPrice = true;
+                        if(rbBrands.getId() == findViewById(R.id.TP).getId()){
+                            boolTP = true;
                         }else{
-                            boolLowPrice = false;
+                            boolTP = false;
                         }
-                        if(cbDistance.isChecked()){
-                            boolDistance = true;
+                        if(rbBrands.getId() == findViewById(R.id.BP).getId()){
+                            boolBP = true;
                         }else{
-                            boolDistance = false;
+                            boolBP = false;
                         }
-                        if(cbBestToilet.isChecked()){
-                            boolToilet = true;
-                        }else {
-                            boolToilet = false;
+                        if(rbBrands.getId() == findViewById(R.id.PO).getId()){
+                            boolPO = true;
+                        }else{
+                            boolPO = false;
                         }
-
-                        Bundle userChoice = new Bundle();
-
-                        userChoice.putBoolean("boolGasoline",boolGasoline);
-                        userChoice.putBoolean("boolDiesel",boolDiesel);
-                        userChoice.putBoolean("boolDistance",boolDistance);
-                        userChoice.putBoolean("boolLowPrice",boolLowPrice);
-                        userChoice.putBoolean("boolLPG",boolLPG);
-                        userChoice.putBoolean("boolToilet",boolToilet);
-
-
-                        Intent stationList = new Intent(FindStationActivity.this,StationListActivity.class);
-                        stationList.putExtras(userChoice);
-                        startActivity(stationList);
-
-
-                    }else{
-                        Toast.makeText(FindStationActivity.this, "İstasyon kriterlerinden en az birini seçmelisiniz!", Toast.LENGTH_SHORT).show();
                     }
+
+                    //Akaryakıt türlerinin kontrolü
+
+                    if(rbFuel.getId() == findViewById(R.id.rbDiesel).getId()){
+                        boolDiesel = true;
+                    }else{
+                        boolDiesel = false;
+                    }
+                    if(rbFuel.getId() == findViewById(R.id.rbLPG).getId()){
+                        boolLPG = true;
+                    }else{
+                        boolLPG = false;
+                    }
+                    if(rbFuel.getId() == findViewById(R.id.rbGasoline).getId()){
+                        boolGasoline = true;
+                    }else{
+                        boolGasoline = false;
+                    }
+
+                    //Özelliklerin kontrolü
+
+                    if(cb24Hour.isChecked()){
+                        bool24Hour = true;
+                    }else{
+                        bool24Hour = false;
+                    }
+                    if(cbCafe.isChecked()){
+                        boolCafe = true;
+                    }else{
+                        boolCafe = false;
+                    }
+                    if(cbCarwash.isChecked()){
+                        boolCarwash = true;
+                    }else{
+                        boolCarwash = false;
+                    }
+                    if(cbMarket.isChecked()){
+                        boolMarket = true;
+                    }else{
+                        boolMarket = false;
+                    }
+                    if(cbWc.isChecked()){
+                        boolWc = true;
+                    }else{
+                        boolWc = false;
+                    }
+                    if(cbOil.isChecked()){
+                        boolOil = true;
+                    }else{
+                        boolOil = false;
+                    }
+                    if(cbTire.isChecked()){
+                        boolTire = true;
+                    }else{
+                        boolTire = false;
+                    }
+                    if(cbMescit.isChecked()){
+                        boolMescit = true;
+                    }else{
+                        boolMescit = false;
+                    }
+                    if(cbMigros.isChecked()){
+                        boolMigros = true;
+                    }else{
+                        boolMigros = false;
+                    }
+                    if(cbATM.isChecked()){
+                        boolATM = true;
+                    }else{
+                        boolATM = false;
+                    }
+                    if(cbRedBull.isChecked()){
+                        boolRedBull = true;
+                    }else{
+                        boolRedBull = false;
+                    }
+                    if(cbFood.isChecked()){
+                        boolFood = true;
+                    }else{
+                        boolFood = false;
+                    }
+
+                    Bundle userChoice = new Bundle();
+
+                    userChoice.putBoolean("boolShell",boolShell);
+                    userChoice.putBoolean("boolOpet",boolOpet);
+                    userChoice.putBoolean("boolTotal",boolTotal);
+                    userChoice.putBoolean("boolBP",boolBP);
+                    userChoice.putBoolean("boolTP",boolTP);
+                    userChoice.putBoolean("boolPO",boolPO);
+
+                    userChoice.putBoolean("boolMarket",boolMarket);
+                    userChoice.putBoolean("bool24Hour",bool24Hour);
+                    userChoice.putBoolean("boolWc",boolWc);
+                    userChoice.putBoolean("boolCarwash",boolCarwash);
+                    userChoice.putBoolean("boolOil",boolOil);
+                    userChoice.putBoolean("boolCafe",boolCafe);
+                    userChoice.putBoolean("boolTire",boolTire);
+                    userChoice.putBoolean("boolMigros",boolMigros);
+                    userChoice.putBoolean("boolMescit",boolMescit);
+                    userChoice.putBoolean("boolATM",boolATM);
+                    userChoice.putBoolean("boolRedBull",boolRedBull);
+                    userChoice.putBoolean("boolFood",boolFood);
+
+                    userChoice.putBoolean("boolGasoline",boolGasoline);
+                    userChoice.putBoolean("boolDiesel",boolDiesel);
+                    userChoice.putBoolean("boolLPG",boolLPG);
+
+
+                    Intent stationList = new Intent(FindStationActivity.this,StationListActivity.class);
+                    stationList.putExtras(userChoice);
+                    startActivity(stationList);
                 }
             }
         });
-    }
-
-    public void intent(double infoStPositionX, double infoStPositionY, String infoStPhoto, String infoStName, String infoStation){
-
-        stationInformations.putDouble("infoStPositionX",infoStPositionX);
-        stationInformations.putDouble("infoStPositionY",infoStPositionY);
-        stationInformations.putString("infoStPhoto",infoStPhoto);
-        stationInformations.putString("infoStName",infoStName);
-        stationInformations.putString("infoStation",infoStation);
-
-        intentInfoSt.putExtras(stationInformations);
-
-        startActivity(intentInfoSt);
-    }
-
-    ValueEventListener nearStationListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            if (dataSnapshot.exists()) {
-                for (DataSnapshot listSnap : dataSnapshot.getChildren()) {
-                    StationModel value = listSnap.getValue(StationModel.class);
-
-                    stationName = value.getStationName();
-                    stCleanToilet = value.getStCleanToilet();
-                    stPrice = value.getStationPrice();
-                    stLPG = value.getStLPG();
-                    stDiesel = value.getStDiesel();
-                    stGasoline = value.getStGasoline();
-                    stPositionX = value.getStPositionX();
-                    stPositionY = value.getStPositionY();
-                    stInfo = value.getStationInfo();
-                    stPhoto = value.getStPhoto();
-                    stLogo = value.getStationLogo();
-
-                    stPrice = stGasoline;
-
-                    gps = new GPSTracker(FindStationActivity.this);
-
-                    if (gps.canGetLocation()) {
-                        userLatitude = gps.getLatitude();
-                        userLongitude = gps.getLongitude();
-                    }
-
-                    distanceNumber = CalculationByDistance(userLatitude,userLongitude,stPositionX,stPositionY);
-
-                    //burada mesafeyi kısıtlıyorum
-                    DecimalFormat precision = new DecimalFormat("0.0");
-
-                    goodStDistance = "Mesafe: " + precision.format(distanceNumber) + " km";
-
-                    stMPrice = "Fiyat: " + String.valueOf(stPrice);
-
-                    tvNearPrice.setText(stMPrice);
-                    tvNearName.setText(stationName);
-                    tvNearDistance.setText(goodStDistance);
-                    Picasso.get().load(stLogo).into(imgNearLogo);
-
-                }
-            }
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    };
-
-    //mesafe hesaplama fonksiyonu
-
-    public double CalculationByDistance(double userLatitude , double userLongitude,double stationLatitude,double stationLongtitude) {
-        int Radius = 6371;// radius of earth in Km
-        double lat1 = userLatitude;
-        double lat2 = stationLatitude;
-        double lon1 = userLongitude;
-        double lon2 = stationLongtitude;
-        double dLat = Math.toRadians(lat2 - lat1);
-        double dLon = Math.toRadians(lon2 - lon1);
-        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-                + Math.cos(Math.toRadians(lat1))
-                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
-                * Math.sin(dLon / 2);
-        double c = 2 * Math.asin(Math.sqrt(a));
-        double valueResult = Radius * c;
-        double km = valueResult / 1;
-        DecimalFormat newFormat = new DecimalFormat("####");
-        //int kmInDec = Integer.valueOf(newFormat.format(km));
-        double meter = valueResult % 1000;
-        //int meterInDec = Integer.valueOf(newFormat.format(meter));
-        //Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
-        //        + " Meter   " + meterInDec);
-
-        return Radius * c;
     }
 }

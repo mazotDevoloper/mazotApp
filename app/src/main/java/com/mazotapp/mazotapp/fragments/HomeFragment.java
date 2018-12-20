@@ -1,10 +1,27 @@
 package com.mazotapp.mazotapp.fragments;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +32,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.common.util.IOUtils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,38 +52,51 @@ import com.mazotapp.mazotapp.adapters.PrivateAdapter;
 import com.mazotapp.mazotapp.models.StationModel;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.Delayed;
+
+import static android.content.ContentValues.TAG;
+import static android.content.Context.LOCATION_SERVICE;
+import static android.content.Context.VIBRATOR_SERVICE;
 
 
 public class HomeFragment extends Fragment {
 
     Button btnGoFindStation;
     Intent intentInfoSt;
-    String stationName,stInfo,stPhoto,stLogo,stMPrice,nearDistance;
+    String stationName,stInfo,stPhoto,stLogo,nearDistance;
     Bundle stationInformations;
-    int stCleanToilet;
     View view;
-    double stPrice,stLPG,stDiesel,stGasoline,stPositionX,stPositionY;
+    double stPositionX,stPositionY,userLatitude,userLongitude,distanceNumber;
     CardView cardNear;
-
-    TextView tvNearName,tvNearPrice,tvNearDistance;
-
-    ImageView imgNearLogo;
+    TextView tvNearName,tvNearDistance,AlertT;
+    String cityName,countryName;
+    ImageView imgNearLogo,imgCarwash,imgMarket,imgWc,imgOil,imgCafe;
 
     GPSTracker gps;
 
-    double userLatitude,userLongitude,distanceNumber;
-
-    private ListView lvStMain;
+    Boolean boolMarket,boolCafe,boolOil,boolCarwash,bool24hours,boolWc;
     DatabaseReference databaseReference;
     FirebaseDatabase database;
 
+    private ListView lvStMain;
     List<StationModel> mostUseList = new ArrayList<StationModel>();
     MainAdapter stMainAdapter;
     Query queryStationList;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,8 +105,13 @@ public class HomeFragment extends Fragment {
 
         tvNearDistance = view.findViewById(R.id.tvNearDistance);
         tvNearName = view.findViewById(R.id.tvNearName);
-        tvNearPrice = view.findViewById(R.id.tvNearPrice);
+        AlertT = view.findViewById(R.id.AlertT);
 
+        imgCafe = view.findViewById(R.id.imgCafe);
+        imgCarwash = view.findViewById(R.id.imgCarwash);
+        imgMarket = view.findViewById(R.id.imgMarket);
+        imgOil = view.findViewById(R.id.imgOil);
+        imgWc = view.findViewById(R.id.imgWc);
         imgNearLogo = view.findViewById(R.id.imgStNear);
 
         lvStMain = view.findViewById(R.id.lvMostUse);
@@ -88,20 +125,52 @@ public class HomeFragment extends Fragment {
 
         stMainAdapter = new MainAdapter(getActivity(), mostUseList);
 
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference().child("Stations");
+        gps = new GPSTracker(getActivity());
 
-        // sık kullanılanlar listesi filtreleme
-        queryStationList = databaseReference.orderByChild("stGasoline").limitToFirst(4);
-        queryStationList.addListenerForSingleValueEvent(mostUseStationsListener);
+        if(gps.isNetworkEnabled){
 
-        //en yakın istasyon
+            userLatitude = gps.getLatitude();
+                    userLongitude = gps.getLongitude();
 
-        queryStationList = databaseReference;
-        queryStationList.addListenerForSingleValueEvent(nearStationListener);
+                    countryName = null;
+                    cityName = null;
+                    Geocoder gcd = new Geocoder(getActivity().getBaseContext(), Locale.getDefault());
+                    List<Address> addresses;
+                    try {
+                        addresses = gcd.getFromLocation(userLatitude, userLongitude, 1);
+                        if (addresses.size() > 0) {
+                            //cityName = addresses.get(0).getAdminArea();      //il
+                            countryName = addresses.get(0).getCountryName();
+                            // cityName = addresses.get(0).getSubLocality();   //mahalle
+                            cityName = addresses.get(0).getLocality();      //ilçe
+                        }
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    database = FirebaseDatabase.getInstance();
+                    //databaseReference = database.getReference().child("deneme").child(countryName).child(cityName);
+                    databaseReference = database.getReference().child("Stations");
+
+
+                    // sık kullanılanlar listesi filtreleme
+                    queryStationList = databaseReference.orderByChild("stPositionX").limitToFirst(8);
+                    queryStationList.addListenerForSingleValueEvent(mostUseStationsListener);
+
+                    //en yakın istasyon
+
+                    queryStationList = databaseReference;
+                    queryStationList.addListenerForSingleValueEvent(nearStationListener);
+
+                    AlertT.setVisibility(View.INVISIBLE);
+        }else{
+            AlertT.setText("Lütfen internet bağlantınızı kontrol  edin ve yukarıdaki yeniden başlat  butonuna basın");
+            AlertT.setVisibility(View.VISIBLE);
+        }
+
 
         //en yakının blgilerini gösteriyorum
-
 
         lvStMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -109,21 +178,32 @@ public class HomeFragment extends Fragment {
 
                 //istasyon bilgilerini Bundle la diğer sayfaya aktarıyorum
 
-                String infoStation = mostUseList.get(position).getStationInfo();
+                Boolean infoBoolMarket = mostUseList.get(position).getStMarket();
+                Boolean infoBoolWc = mostUseList.get(position).getStWc();
+                Boolean infoBoolOil = mostUseList.get(position).getStOil();
+                Boolean infoBool24hours = mostUseList.get(position).getSt24hour();
+                Boolean infoBoolCafe = mostUseList.get(position).getStCafe();
+                Boolean infoBoolCarwash = mostUseList.get(position).getStCarwash();
+
                 String infoStName = mostUseList.get(position).getStationName();
                 String infoStPhoto = mostUseList.get(position).getStPhoto();
 
-                double infoStPrice = mostUseList.get(position).getStationPrice();
                 double infoStPositionX = mostUseList.get(position).getStPositionX();
                 double infoStPositionY = mostUseList.get(position).getStPositionY();
+
 
                 Bundle stationInformations = new Bundle();
                 stationInformations.putDouble("infoStPositionX", infoStPositionX);
                 stationInformations.putDouble("infoStPositionY", infoStPositionY);
                 stationInformations.putString("infoStPhoto", infoStPhoto);
                 stationInformations.putString("infoStName", infoStName);
-                stationInformations.putDouble("infoStPrice", infoStPrice);
-                stationInformations.putString("infoStation", infoStation);
+
+                stationInformations.putBoolean("infoBoolMarket",infoBoolMarket);
+                stationInformations.putBoolean("infoBoolWc",infoBoolWc);
+                stationInformations.putBoolean("infoBoolOil",infoBoolOil);
+                stationInformations.putBoolean("infoBool24hours",infoBool24hours);
+                stationInformations.putBoolean("infoBoolCafe",infoBoolCafe);
+                stationInformations.putBoolean("infoBoolCarwash",infoBoolCarwash);
 
                 Intent stationInformation = new Intent(getActivity(), InformationStationActivity.class);
                 stationInformation.putExtras(stationInformations);
@@ -139,11 +219,10 @@ public class HomeFragment extends Fragment {
 
         stationInformations = new Bundle();
 
-
         cardNear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent(stPositionX,stPositionY,stPhoto,stationName,stInfo);
+                intent(stPositionX,stPositionY,stPhoto,stationName,stInfo,boolMarket,boolWc,boolCafe,bool24hours,boolOil,boolCarwash);
             }
         });
 
@@ -157,13 +236,20 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void intent(double infoStPositionX, double infoStPositionY, String infoStPhoto, String infoStName, String infoStation){
+    public void intent(double infoStPositionX, double infoStPositionY, String infoStPhoto, String infoStName, String infoStation,Boolean infoMarket, Boolean infoWc, Boolean infoCafe, Boolean info24hours, Boolean infoOil, Boolean infoCarwash){
 
         stationInformations.putDouble("infoStPositionX",infoStPositionX);
         stationInformations.putDouble("infoStPositionY",infoStPositionY);
         stationInformations.putString("infoStPhoto",infoStPhoto);
         stationInformations.putString("infoStName",infoStName);
         stationInformations.putString("infoStation",infoStation);
+
+        stationInformations.putBoolean("infoBoolMarket",infoMarket);
+        stationInformations.putBoolean("infoBoolWc",infoWc);
+        stationInformations.putBoolean("infoBoolCafe",infoCafe);
+        stationInformations.putBoolean("infoBool24hours",info24hours);
+        stationInformations.putBoolean("infoBoolOil",infoOil);
+        stationInformations.putBoolean("infoBoolCarwash",infoCarwash);
 
         intentInfoSt.putExtras(stationInformations);
 
@@ -179,20 +265,28 @@ public class HomeFragment extends Fragment {
                     StationModel value = listSnap.getValue(StationModel.class);
 
                     String stationName = value.getStationName();
-                    int stCleanToilet = value.getStCleanToilet();
-                    double stPrice = value.getStationPrice();
-                    double stLPG = value.getStLPG();
-                    double stDiesel = value.getStDiesel();
-                    double stGasoline = value.getStGasoline();
                     Double stPositionX = value.getStPositionX();
                     Double stPositionY = value.getStPositionY();
-                    String stInfo = value.getStationInfo();
                     String stPhoto = value.getStPhoto();
                     String stLogo = value.getStationLogo();
+                    String stBrand = value.getStBrand();
 
-                    stPrice = stGasoline;
+                    Boolean stMarket = value.getStMarket();
+                    Boolean stCafe = value.getStCafe();
+                    Boolean stWc = value.getStWc();
+                    Boolean stOil = value.getStOil();
+                    Boolean stCarwash = value.getStCarwash();
+                    Boolean st24hour = value.getSt24hour();
+                    Boolean stTire = value.getStTire();
+                    Boolean stMigros = value.getStMigros();
+                    Boolean stMescit = value.getStMescit();
+                    Boolean stATM = value.getStATM();
+                    Boolean stRedBull = value.getStRedBull();
+                    Boolean stFood = value.getStFood();
 
-                    mostUseList.add(new StationModel(stLogo,stPhoto,stationName,stCleanToilet,stPrice,stDiesel,stGasoline,stLPG,stInfo,stPositionX,stPositionY));
+
+
+                    mostUseList.add(new StationModel(stLogo,stPhoto,stationName,stPositionX,stPositionY,stBrand,st24hour,stCafe,stCarwash,stOil,stWc,stMarket,stTire,stMigros,stMescit,stATM,stRedBull,stFood));
 
                     stMainAdapter.notifyDataSetChanged();
                 }
@@ -214,36 +308,47 @@ public class HomeFragment extends Fragment {
                     StationModel value = listSnap.getValue(StationModel.class);
 
                     stationName = value.getStationName();
-                    stCleanToilet = value.getStCleanToilet();
-                    stPrice = value.getStationPrice();
-                    stLPG = value.getStLPG();
-                    stDiesel = value.getStDiesel();
-                    stGasoline = value.getStGasoline();
                     stPositionX = value.getStPositionX();
                     stPositionY = value.getStPositionY();
-                    stInfo = value.getStationInfo();
                     stPhoto = value.getStPhoto();
                     stLogo = value.getStationLogo();
 
-                    stPrice = stGasoline;
+                    boolCafe = value.getStCafe();
+                    boolCarwash = value.getStCarwash();
+                    boolMarket = value.getStMarket();
+                    boolOil = value.getStOil();
+                    boolWc = value.getStWc();
+                    bool24hours = value.getSt24hour();
 
-                    gps = new GPSTracker(getActivity());
-
-                    if (gps.canGetLocation()) {
-                        userLatitude = gps.getLatitude();
-                        userLongitude = gps.getLongitude();
+                    if(boolWc){
+                        imgWc.setVisibility(View.VISIBLE);
+                    }
+                    if(boolOil){
+                        imgOil.setVisibility(View.VISIBLE);
+                    }
+                    if(boolCarwash){
+                        imgCarwash.setVisibility(View.VISIBLE);
+                    }
+                    if(boolMarket){
+                        imgMarket.setVisibility(View.VISIBLE);
+                    }
+                    if(boolCafe){
+                        imgCafe.setVisibility(View.VISIBLE);
                     }
 
-                    distanceNumber = CalculationByDistance(userLatitude,userLongitude,stPositionX,stPositionY);
+                    if(!gps.canGetLocation()){
+                        distanceNumber = 0.0;
+                    }else{
+                        userLatitude = gps.getLatitude();
+                        userLongitude = gps.getLongitude();
+                        distanceNumber = CalculationByDistance(userLatitude,userLongitude,stPositionX,stPositionY);
+                    }
 
-                    //burada mesafeyi kısıtlıyorum
+                    //burada mesafeyi kısıtlıyorum(virgülden sonraki 0'dan sonraki kısmını göstermiyorum)
                     DecimalFormat precision = new DecimalFormat("0.0");
 
-                    nearDistance = "Mesafe: " + precision.format(distanceNumber) + " km";
+                    nearDistance =  precision.format(distanceNumber) + " KM";
 
-                    stMPrice = "Fiyat: " + String.valueOf(stPrice);
-
-                    tvNearPrice.setText(stMPrice);
                     tvNearName.setText(stationName);
                     tvNearDistance.setText(nearDistance);
                     Picasso.get().load(stLogo).into(imgNearLogo);
@@ -271,17 +376,12 @@ public class HomeFragment extends Fragment {
                 * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
                 * Math.sin(dLon / 2);
         double c = 2 * Math.asin(Math.sqrt(a));
-        double valueResult = Radius * c;
-        double km = valueResult / 1;
-        DecimalFormat newFormat = new DecimalFormat("####");
-        //int kmInDec = Integer.valueOf(newFormat.format(km));
-        double meter = valueResult % 1000;
-        //int meterInDec = Integer.valueOf(newFormat.format(meter));
-        //Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
-        //        + " Meter   " + meterInDec);
 
         return Radius * c;
     }
-
 }
+
+
+
+
 

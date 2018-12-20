@@ -33,15 +33,6 @@
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/btnCallServices"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/button_oval"
-            android:text="Müşteri Hizmetleri"
-            android:textColor="@color/white" />
-
-        <Button
             android:id="@+id/btnLogOut"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"

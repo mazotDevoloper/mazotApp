@@ -22,17 +22,12 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
     private Button btnLogin;
-    private ProgressDialog PD;
     private TextView tRegister;
+    GPSTracker gps;
 
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        PD = new ProgressDialog(this);
-        PD.setMessage("Yükleniyor...");
-        PD.setCancelable(true);
-        PD.setCanceledOnTouchOutside(false);
 
         auth = FirebaseAuth.getInstance();
 
@@ -41,40 +36,46 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         tRegister = findViewById(R.id.tRegister);
 
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override            public void onClick(View view) {
-                final String email = inputEmail.getText().toString().trim();
-                final String password = inputPassword.getText().toString().trim();
+            @Override
+            public void onClick(View view) {
 
-                try {
+                gps = new GPSTracker(LoginActivity.this);
 
-                    if (password.length() > 0 && email.length() > 0) {
-                        PD.show();
-                        auth.signInWithEmailAndPassword(email, password)
-                                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (!task.isSuccessful()) {
-                                            Toast.makeText(
-                                                    LoginActivity.this,
-                                                    "Aracınıza giriş yapılamadı :(",
-                                                    Toast.LENGTH_LONG).show();
-                                        } else {
-                                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                            startActivity(intent);
-                                        }
-                                        PD.dismiss();
-                                    }
-                                });
-                    } else {
-                        Toast.makeText(
-                                LoginActivity.this,
-                                "Boş depoyla gidemessin dostum :(",
-                                Toast.LENGTH_LONG).show();
+                if(gps.isNetworkEnabled){
+                    final String email = inputEmail.getText().toString().trim();
+                    final String password = inputPassword.getText().toString().trim();
+
+                    try {
+
+                        if (email.length() > 0) {
+                            if (password.length() > 0) {
+                                auth.signInWithEmailAndPassword(email, password)
+                                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                if (!task.isSuccessful()) {
+                                                    Toast.makeText(
+                                                            LoginActivity.this,
+                                                            "Hesabınıza giriş yapılamadı. Bilgilerinizi kontrol edip yeniden deneyiniz",
+                                                            Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        });
+                            }else{
+                                Toast.makeText(LoginActivity.this, "Lütfen parolanızı giriniz", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Lütfen e-postanızı giriniz", Toast.LENGTH_LONG).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                }else{
+                    Toast.makeText(LoginActivity.this, "Lütfen internet bağlantınızı kontrol  edin", Toast.LENGTH_SHORT).show();
                 }
             }
         });

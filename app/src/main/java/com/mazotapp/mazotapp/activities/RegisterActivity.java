@@ -16,12 +16,14 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,8 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword, inputPhoneNumber, inputName, inputSurname;
     private FirebaseAuth auth;
     private Button registerBtn;
-    private TextView loginT;
+    private CheckBox cbContract;
+    private TextView loginT,contractReadT;
     String id,cityName;
+
     GPSTracker gps;
 
     double latitude,longitude;
@@ -63,6 +67,12 @@ public class RegisterActivity extends AppCompatActivity {
             finish();
         }
 
+        gps = new GPSTracker(RegisterActivity.this);
+        
+        cbContract = findViewById(R.id.cbContract);
+
+        contractReadT = findViewById(R.id.contractReadT);
+
         inputEmail = findViewById(R.id.etEmail);
         inputPassword = findViewById(R.id.etPassword);
         inputPhoneNumber = findViewById(R.id.etMobileNumber);
@@ -74,75 +84,105 @@ public class RegisterActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Users");
 
+        contractReadT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentContract = new Intent(RegisterActivity.this,ContractActivity.class);
+                startActivity(intentContract);
+            }
+        });
+
             registerBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    gps = new GPSTracker(RegisterActivity.this);
 
-                    if (gps.canGetLocation()) {
-                        latitude = gps.getLatitude();
-                        longitude = gps.getLongitude();
+                    gps = new GPSTracker(view.getContext());
 
-                        cityName = null;
-                        Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
-                        List<Address> addresses;
-                        try {
-                            addresses = gcd.getFromLocation(latitude, longitude, 1);
-                            if (addresses.size() > 0) {
-                                cityName = addresses.get(0).getAdminArea();//il
-                                // cityName = addresses.get(0).getSubLocality();   //mahalle
-                                // cityName = addresses.get(0).getLocality();      //ilçe
-                            }
-                        }
-                        catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    if(gps.isNetworkEnabled){
+                                if(cbContract.isChecked()){
 
-                        final String email = inputEmail.getText().toString().trim();
-                        final String password = inputPassword.getText().toString().trim();
-                        final String phoneNumber = inputPhoneNumber.getText().toString().trim();
-                        final String name = inputName.getText().toString().trim();
-                        final String surname = inputSurname.getText().toString().trim();
+                                    latitude = gps.getLatitude();
+                                    longitude = gps.getLongitude();
 
-                        final Bundle userInformation = new Bundle();
-
-                        userInformation.putString("userPhoneNumber", phoneNumber);
-
-                        if (!password.isEmpty() && !email.isEmpty() && !phoneNumber.isEmpty() && !name.isEmpty() && !surname.isEmpty()) {
-                            auth.createUserWithEmailAndPassword(email, password)
-                                    .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (!task.isSuccessful()) {
-                                                Toast.makeText(RegisterActivity.this, "Plakanız oluşturulamadı :(", Toast.LENGTH_LONG).show();
-                                                inputEmail.setText("");
-                                                inputName.setText("");
-                                                inputSurname.setText("");
-                                                inputPhoneNumber.setText("");
-                                                inputPassword.setText("");
-                                            } else {
-                                                id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                                                UserModel user = new UserModel(name, surname, phoneNumber, email, password, 0, 0, 0, 0, 0, 0, longitude, latitude,cityName);
-
-                                                databaseReference.child(id).setValue(user);
-
-                                                Intent verifyPhoneNumber = new Intent(RegisterActivity.this, VerifyPhoneNumberActivity.class);
-                                                verifyPhoneNumber.putExtras(userInformation);
-                                                startActivity(verifyPhoneNumber);
-                                                finish();
-                                            }
+                                    cityName = null;
+                                    Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+                                    List<Address> addresses;
+                                    try {
+                                        addresses = gcd.getFromLocation(latitude, longitude, 1);
+                                        if (addresses.size() > 0) {
+                                            cityName = addresses.get(0).getAdminArea();      //il
+                                            //cityName = addresses.get(0).getCountryName();
+                                            // cityName = addresses.get(0).getSubLocality();   //mahalle
+                                            //cityName = addresses.get(0).getLocality();      //ilçe
                                         }
-                                    });
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Boş depoyla gidemessin dostum :(", Toast.LENGTH_LONG).show();
-                        }
+                                    }
+                                    catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
 
-                    } else {
-                        // can't get location
-                        // GPS or Network is not enabled
-                        // Ask user to enable GPS/network in settings
-                        gps.showSettingsAlert();
+                                    final String email = inputEmail.getText().toString().trim();
+                                    final String password = inputPassword.getText().toString().trim();
+                                    final String phoneNumber = inputPhoneNumber.getText().toString().trim();
+                                    final String name = inputName.getText().toString().trim();
+                                    final String surname = inputSurname.getText().toString().trim();
+
+                                    final Bundle userInformation = new Bundle();
+
+                                    userInformation.putString("userPhoneNumber", phoneNumber);
+
+                                    if (!name.isEmpty()) {
+                                        if(!surname.isEmpty()){
+                                            if(!email.isEmpty()){
+                                                if(!password.isEmpty()){
+                                                    if(!phoneNumber.isEmpty()){
+                                                        auth.createUserWithEmailAndPassword(email, password)
+                                                                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                                                        if (!task.isSuccessful()) {
+                                                                            Toast.makeText(RegisterActivity.this, "Hesabınız oluşturulamadı", Toast.LENGTH_LONG).show();
+                                                                            inputEmail.setText("");
+                                                                            inputName.setText("");
+                                                                            inputSurname.setText("");
+                                                                            inputPhoneNumber.setText("");
+                                                                            inputPassword.setText("");
+                                                                        } else {
+                                                                            id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                                                                            UserModel user = new UserModel(name, surname, phoneNumber, email, password,longitude, latitude,cityName);
+
+                                                                            databaseReference.child(id).setValue(user);
+
+                                                                            Intent homeActivity = new Intent(RegisterActivity.this, HomeActivity.class);
+                                                                            //verifyPhoneNumber.putExtras(userInformation);
+                                                                            //startActivity(verifyPhoneNumber);
+                                                                            startActivity(homeActivity);
+                                                                            finish();
+                                                                        }
+                                                                    }
+                                                                });
+                                                    }else {
+                                                        Toast.makeText(RegisterActivity.this, "Lütfen telefon numaranızı giriniz", Toast.LENGTH_LONG).show();
+                                                    }
+                                                }else {
+                                                    Toast.makeText(RegisterActivity.this, "Lütfen parolanızı giriniz", Toast.LENGTH_LONG).show();
+                                                }
+                                            }else {
+                                                Toast.makeText(RegisterActivity.this, "Lütfen e-postanızı giriniz", Toast.LENGTH_LONG).show();
+                                            }
+                                        }else {
+                                            Toast.makeText(RegisterActivity.this, "Lütfen soyisminizi giriniz", Toast.LENGTH_LONG).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this, "Lütfen isminizi giriniz", Toast.LENGTH_LONG).show();
+                                    }
+
+                                } else {
+                                    Toast.makeText(RegisterActivity.this, "Sözleşmenin şartlarını kabul etmelisiniz.", Toast.LENGTH_SHORT).show();
+
+                                }
+                    }else{
+                        Toast.makeText(RegisterActivity.this, "Lütfen internet bağlantınızı kontrol  edin", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

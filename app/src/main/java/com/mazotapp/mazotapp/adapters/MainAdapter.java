@@ -25,12 +25,12 @@ import java.util.List;
 public class MainAdapter extends BaseAdapter{
 
     private LayoutInflater stationLayoutInflater;
-    TextView stationNameT,stationPrice,stationDistance;
-    ImageView stationImg;
+    TextView stationNameT,stationDistance;
+    ImageView stationImg,imgCafe,imgMarket,imgWc,imgOil,imgCarwash;
 
     List<StationModel> stationLst  = new ArrayList<>();
     GPSTracker gps;
-    String fuelPrice,distance;
+    String distance;
 
     double userLatitude,userLongitude,distanceNumber;
 
@@ -63,33 +63,60 @@ public class MainAdapter extends BaseAdapter{
 
         View lineVisibility = stationLayoutInflater.inflate(R.layout.cardview_station,null);
 
-        gps = new GPSTracker(lineVisibility.getContext());
-
-        if (gps.canGetLocation()) {
-            userLatitude = gps.getLatitude();
-            userLongitude = gps.getLongitude();
-        }
-
         stationNameT = lineVisibility.findViewById(R.id.tvStName);
-        stationPrice = lineVisibility.findViewById(R.id.stPrice);
         stationImg = lineVisibility.findViewById(R.id.imgLogo);
         stationDistance = lineVisibility.findViewById(R.id.stDistance);
 
+        imgCafe = lineVisibility.findViewById(R.id.imgCafe);
+        imgCarwash = lineVisibility.findViewById(R.id.imgCarwash);
+        imgMarket = lineVisibility.findViewById(R.id.imgMarket);
+        imgOil =  lineVisibility.findViewById(R.id.imgOil);
+        imgWc = lineVisibility.findViewById(R.id.imgWc);
 
         StationModel stationModel = stationLst.get(position);
 
-        distanceNumber = CalculationByDistance(userLatitude,userLongitude,stationModel.getStPositionX(),stationModel.getStPositionY());
+        gps = new GPSTracker(lineVisibility.getContext());
+
+        if(!gps.canGetLocation()){
+            distanceNumber = 0.0;
+        }else{
+            userLatitude = gps.getLatitude();
+            userLongitude = gps.getLongitude();
+            distanceNumber = CalculationByDistance(userLatitude,userLongitude,stationModel.getStPositionX(),stationModel.getStPositionY());
+        }
+
+        Boolean boolCafe,boolCarwash,boolMarket,boolOil,boolWc;
+
+        boolCafe = stationModel.getStCafe();
+        boolCarwash = stationModel.getStCarwash();
+        boolMarket = stationModel.getStMarket();
+        boolOil = stationModel.getStOil();
+        boolWc = stationModel.getStWc();
+
+        if(boolCafe){
+            imgCafe.setVisibility(View.VISIBLE);
+        }
+        if(boolCarwash){
+            imgCarwash.setVisibility(View.VISIBLE);
+        }
+        if(boolMarket){
+            imgMarket.setVisibility(View.VISIBLE);
+        }
+        if(boolOil){
+            imgOil.setVisibility(View.VISIBLE);
+        }
+        if(boolWc){
+            imgWc.setVisibility(View.VISIBLE);
+        }
+
 
         //burada mesafeyi kısıtlıyorum
         DecimalFormat precision = new DecimalFormat("0.0");
 
-        distance = "Mesafe: " + precision.format(distanceNumber) + " km";
-
-        fuelPrice = "Fiyat: " + String.valueOf(stationModel.getStationPrice());
+        distance = precision.format(distanceNumber) + " KM";
 
         stationDistance.setText(distance);
         stationNameT.setText(stationModel.getStationName());
-        stationPrice.setText(fuelPrice);
         Picasso.get().load(stationModel.getStationLogo()).into(stationImg);
 
         return lineVisibility;
@@ -109,14 +136,6 @@ public class MainAdapter extends BaseAdapter{
                 * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
                 * Math.sin(dLon / 2);
         double c = 2 * Math.asin(Math.sqrt(a));
-        double valueResult = Radius * c;
-        double km = valueResult / 1;
-        DecimalFormat newFormat = new DecimalFormat("####");
-        //int kmInDec = Integer.valueOf(newFormat.format(km));
-        double meter = valueResult % 1000;
-        //int meterInDec = Integer.valueOf(newFormat.format(meter));
-        //Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
-        //        + " Meter   " + meterInDec);
 
         return Radius * c;
     }

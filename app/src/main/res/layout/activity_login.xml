@@ -2,42 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/mazotbackground"
     android:gravity="center"
     android:orientation="vertical">
 
     <ImageView
         android:layout_width="205dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/mazoticon"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/mazot_logo_top"
         android:layout_height="75dp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:paddingRight="80dp"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/etEmail"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
             android:layout_height="45dp"
-            android:padding="5dp"
-            android:background="@drawable/edit_text_oval_top"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_oval"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:singleLine="true" />
 
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/etPassword"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
             android:layout_height="45dp"
             android:focusableInTouchMode="true"
             android:hint="@string/password"
-            android:padding="5dp"
-            android:background="@drawable/edit_text_oval_bottom"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_oval"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
